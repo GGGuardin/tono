@@ -1,0 +1,34 @@
+# PAD-UFES-20 — clasificación binaria maligno / benigno
+#
+# Tarea: BCC, SCC y MEL (cáncer) frente a ACK, NEV y SEK (benigno). Es la
+# pregunta clínicamente útil —¿esto hay que biopsiarlo?— y no una taxonomía de
+# seis clases que nadie usa para decidir.
+#
+# El dataset es pequeño (~2.300 imágenes de ~1.370 pacientes), así que las épocas
+# son rápidas y el riesgo real es el sobreajuste, no el cómputo.
+manifest: manifiesto_pad.csv
+out_dir: runs/pad_densenet121
+
+seed: 42
+arch: densenet121
+pretrained: true
+dropout: 0.3          # más alto que en tórax: menos datos, más riesgo de memorizar
+freeze_backbone: false
+
+img_size: 224
+batch_size: 32
+num_workers: 2
+use_clahe: false
+
+# A diferencia de tórax, aquí el volteo horizontal SÍ se permite: una lesión
+# cutánea no tiene lateralidad anatómica, así que duplica datos sin inventar
+# nada. La prohibición era del dominio radiológico, no una regla universal.
+allow_hflip: true
+
+epochs: 20
+lr: 1.0e-4
+weight_decay: 1.0e-4
+early_stopping_patience: 5
+
+use_pos_weight: true
+balance_train: false
