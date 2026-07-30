@@ -265,3 +265,98 @@ consecuencias, y ninguna es tranquilizadora.
 3. Para que el portero sirva hace falta **un modelo de adecuación**, entrenado
    contra estas mismas etiquetas de SCIN. Es factible: 5.033 casos etiquetados y
    accesibles sin registro.
+
+---
+
+# El portero aprendido tampoco funciona, y ahora sabemos por qué
+
+Si las reglas fotográficas fallaban porque la adecuación diagnóstica es semántica,
+lo lógico era entrenar un modelo que la aprendiera. Se hizo: EfficientNet-B0 sobre
+los 5.033 casos de SCIN, con división por caso.
+
+| Enfoque | AUROC en test |
+|---|---|
+| Reglas fotográficas (once medidas) | 0,547 |
+| **Modelo entrenado** | **0,544** (IC95% 0,509–0,580) |
+
+**Idéntico. Y ambos son azar.** No hubo mejora alguna.
+
+## El modelo sí aprendió — el problema es que no había nada que generalizar
+
+| Época | Train AUROC | Val AUROC |
+|---|---|---|
+| 1 | 0,558 | 0,526 |
+| 4 | 0,761 | 0,558 |
+| 8 | **0,898** | **0,554** |
+
+El AUROC de entrenamiento sube hasta 0,898: el modelo **es perfectamente capaz de
+memorizar** esas etiquetas. Pero la validación se queda clavada en 0,55 desde la
+primera época hasta la última. Puede aprenderse los casos uno a uno y no extraer
+ninguna regla que sirva para casos nuevos.
+
+Eso ya no es un problema de arquitectura, ni de datos insuficientes, ni de
+hiperparámetros. Apunta a la etiqueta.
+
+## La causa: los dermatólogos no coinciden entre ellos
+
+SCIN incluye hasta tres valoraciones independientes por caso. En los 716 casos con
+más de una, el acuerdo sobre **si la foto es evaluable** es este:
+
+| Comparación | Acuerdo bruto | Kappa de Cohen |
+|---|---|---|
+| Valorador 1 vs 2 | 69,1% | **0,210** |
+| Valorador 1 vs 3 | 70,8% | **0,249** |
+| Valorador 2 vs 3 | 62,0% | **0,154** |
+
+Escala habitual: por debajo de 0,20 el acuerdo es *insignificante*; entre 0,21 y
+0,40, *débil*. Los tres pares caen ahí.
+
+**Ningún modelo puede predecir una etiqueta que sus propios anotadores no
+reproducen.** El 0,544 obtenido no está lejos del techo que impone esa
+inconsistencia: estamos midiendo el ruido del criterio humano, no un fallo del
+modelo.
+
+Y explica limpiamente por qué los dos enfoques dan el mismo número: **no fallan por
+cómo miran la foto, fallan porque la pregunta, tal como está planteada, no tiene
+una respuesta estable.**
+
+## Sobre la auditoría de equidad de este modelo
+
+La función de veredicto marcó «CAUTELA» por una brecha de FPR de 0,157 entre tonos.
+**Ese aviso no significa nada aquí**, y conviene decirlo antes que presumir de una
+comprobación que no aplica:
+
+| Fitzpatrick | n | FPR (fotos buenas descartadas) |
+|---|---|---|
+| 1 | 75 | 0,485 |
+| 2 | 277 | 0,500 |
+| 3 | 273 | 0,529 |
+| 4 | 149 | 0,495 |
+| 5 | 74 | 0,372 |
+
+Todas rondan 0,50 porque **el modelo es esencialmente aleatorio**: descarta la
+mitad de todo, sea cual sea el tono. La correlación con la oscuridad de la piel es
+incluso negativa (−0,607). Un análisis de sesgo sobre un clasificador que no
+clasifica no informa de nada, y presentarlo como «no discrimina» sería vender una
+garantía vacía.
+
+La buena noticia colateral: **el temor de que el modelo copiara el sesgo de la
+etiqueta no se materializó**. Pero tampoco se puede descartar, porque el modelo
+nunca llegó a funcionar.
+
+## Qué significa esto para el proyecto
+
+1. **El control de calidad automático de fotos dermatológicas, tal como está
+   planteado, no es un problema resuelto ni fácil.** Dos enfoques independientes
+   —reglas y aprendizaje— dan azar, y la causa está medida.
+2. **Antes de construir un portero hace falta una definición operativa de
+   «evaluable» que dos expertos puedan aplicar igual.** Sin eso no hay etiqueta, y
+   sin etiqueta no hay modelo. Es un problema de diseño de anotación, no de redes
+   neuronales.
+3. **Lo que queda en pie del sistema original**: los mensajes accionables, la
+   concordancia entre varias fotos —que estima incertidumbre **sin necesitar
+   ninguna etiqueta**— y la corrección de color con referencia.
+4. La vía más prometedora sería un objetivo **verificable en lugar de subjetivo**:
+   por ejemplo, si la foto permite localizar la lesión, o si dos fotos de la misma
+   lesión producen la misma predicción. Ambos se pueden comprobar sin depender de
+   que un experto declare «esto se puede evaluar».
