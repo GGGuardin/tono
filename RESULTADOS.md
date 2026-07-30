@@ -132,3 +132,136 @@ como una medida firme.
    0,895 sería quedarse con la mitad favorable de la historia.
 4. **Varias semillas**, para saber cuánto de estas brechas es ruido de
    inicialización. En tórax ese suelo resultó ser 0,004 de AUROC.
+
+---
+
+# Fase 1 — el portero de calidad **no funciona**, y aquí está la prueba
+
+Los umbrales del portero estaban puestos con criterio pero sin datos, y eso se
+dijo desde el principio. SCIN permite arreglarlo: trae **1.925 casos que un
+dermatólogo marcó explícitamente como «calidad de imagen insuficiente»** sobre
+fotos reales de voluntarios con su propio teléfono.
+
+Se midieron **999 imágenes** (muestra equilibrada 50/50, descargadas y
+decodificadas en memoria sin tocar disco). El resultado no es que los umbrales
+estuvieran mal colocados. Es peor.
+
+## Ninguna medida predice si un dermatólogo puede evaluar la foto
+
+AUC de cada medida contra «no evaluable»:
+
+| Medida | AUC |
+|---|---|
+| Nitidez (normalizada, central) | 0,548 |
+| Tinte de color | 0,547 |
+| Ratio centro/marco | 0,541 |
+| Nitidez global | 0,540 |
+| Estructura | 0,525 |
+| Rango dinámico | 0,523 |
+| Brillo medio | 0,522 |
+| Reflejo especular | 0,514 |
+| Fracción quemada | 0,508 |
+| Lado corto (resolución) | 0,501 |
+| Fracción apagada | 0,487 |
+
+Todas entre 0,49 y 0,55: **azar**. Y no es que falte combinarlas — una regresión
+logística con las once medidas juntas da un AUC de validación cruzada de
+**0,5474 ± 0,037**. Tampoco lo explica el tipo de toma: separando por primer plano,
+en ángulo y a distancia, el AUC se queda entre 0,526 y 0,550 en los tres.
+
+**La señal no está en estas medidas.** No es un problema de calibración.
+
+Consecuencia práctica, con los umbrales actuales: el portero rechaza el 24,2% de
+las fotos y **solo detecta el 27,4%** de las que el dermatólogo consideró
+inservibles, tirando por el camino un 21% de las buenas.
+
+## Por qué falla: calidad fotográfica no es adecuación diagnóstica
+
+Es la lección de la tanda, y en retrospectiva era predecible. Mis once medidas
+juzgan la **fotografía**: enfoque, exposición, reflejos, tinte. Lo que juzga un
+dermatólogo es si **puede diagnosticar con eso**: si la lesión está en el encuadre,
+al aumento adecuado, sin vello ni ropa tapándola, con el contexto suficiente.
+
+Una foto nítida, bien expuesta y perfectamente iluminada **del sitio equivocado**
+saca sobresaliente en los once controles y es completamente inútil. Y al revés:
+una foto mediocre pero centrada en la lesión puede ser diagnosticable.
+
+El diseño «sin dependencias de aprendizaje automático» que presenté como virtud
+resulta ser justo la limitación: **la adecuación diagnóstica es semántica, y no se
+mide con estadísticos de píxeles.** Un portero que funcione necesita un modelo
+—detectar que hay una lesión, y a qué escala—, no más filtros de señal.
+
+## Lo que sí quedó descartado: el portero no discrimina por tono de piel
+
+Era el riesgo que más me preocupaba, y ahora está medido. La pregunta correcta no
+es «¿rechaza más en piel oscura?» —si esas fotos son peores, rechazarlas está
+bien— sino **¿descarta fotos buenas de un tono más que de otro?**. Condicionando
+sobre las que el dermatólogo aprobó:
+
+| Fitzpatrick | Fotos buenas | Rechazadas por el portero |
+|---|---|---|
+| 1 (más clara) | 54 | **27,8%** |
+| 2 | 166 | 26,5% |
+| 3 | 132 | 14,4% |
+| 4 | 66 | 25,8% |
+| 5 | 40 | 12,5% |
+| 6 (más oscura) | 7 | *n insuficiente* |
+
+La mayor diferencia es de 15 puntos, **y el tono más castigado es el más claro**.
+No hay ninguna tendencia con la oscuridad de la piel, así que la variación parece
+ruido de muestreo con estas cantidades (40-166 por tono). **Sin evidencia de sesgo
+por tono de piel**, que es lo que se buscaba al descartar la detección de piel por
+color.
+
+## El hallazgo que no esperaba: el patrón de referencia también se degrada
+
+Esto es independiente de mi portero y probablemente lo más relevante de la tanda.
+Tasa de «no evaluable» **según el dermatólogo**, por tono de piel:
+
+| Fitzpatrick | «No evaluable» | n |
+|---|---|---|
+| 1 (más clara) | **20,6%** | 68 |
+| 2 | 35,2% | 256 |
+| 3 | 47,4% | 251 |
+| 4 | 56,0% | 150 |
+| 5 | 37,5% | 64 |
+| 6 (más oscura) | **66,7%** | 21 |
+
+De 20,6% a 66,7%: **más del triple**. El tono 5 rompe la tendencia (n=64) y el
+tono 6 tiene solo 21 casos, así que la magnitud exacta no es firme — pero el
+gradiente entre los tonos 1 y 4, que suman 725 casos, es difícil de atribuir al
+azar.
+
+La implicación va mucho más allá de este proyecto: **cualquier canal que filtre a
+imágenes «evaluables» descarta piel oscura unas tres veces más**, y lo hace antes
+de que exista ningún modelo. El sesgo entra por el patrón de referencia humano, no
+por la red. Un dataset limpiado así llega ya empobrecido en los tonos que más
+importan.
+
+No se puede distinguir con estos datos si las fotos de piel oscura son
+genuinamente más difíciles de evaluar —menor contraste del eritema, por ejemplo— o
+si el juicio de evaluabilidad depende del tono. Ambas explicaciones tienen
+consecuencias, y ninguna es tranquilizadora.
+
+## Salvedades honestas
+
+- La etiqueta de evaluabilidad de SCIN es **por caso**, y un caso puede tener
+  hasta tres imágenes; aquí se midió la primera. Eso mete ruido. Pero no explica
+  el resultado: la separación por tipo de toma no mejora nada y el modelo
+  combinado se queda en 0,547.
+- El valor `DEFAULT_YES` significa «el dermatólogo no la marcó como insuficiente»,
+  no una aprobación activa. La clase informativa es la negativa, y es justo la que
+  el portero no encuentra.
+- Muestra equilibrada 50/50 por diseño; la proporción real de no evaluables en
+  SCIN es del 39%.
+
+## Qué hacer con la Fase 1
+
+1. **No usar el portero como filtro**, tal cual está. Detecta una cuarta parte de
+   las fotos malas y descarta una quinta parte de las buenas.
+2. Lo que **sí** conserva valor: los mensajes accionables, la comprobación de que
+   varias fotos concuerdan, y la corrección de color con referencia. Nada de eso
+   depende de los umbrales.
+3. Para que el portero sirva hace falta **un modelo de adecuación**, entrenado
+   contra estas mismas etiquetas de SCIN. Es factible: 5.033 casos etiquetados y
+   accesibles sin registro.

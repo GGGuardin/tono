@@ -4,14 +4,32 @@
 > Componente de un proyecto **educativo y experimental**. No es un dispositivo
 > médico y no interviene en ninguna decisión clínica.
 
-Proyecto **Tono**. La Fase 1 (este portero) está terminada; los resultados de la
-Fase 2 están en [`RESULTADOS.md`](RESULTADOS.md).
+Proyecto **Tono**. Resultados de todas las fases en
+[`RESULTADOS.md`](RESULTADOS.md).
 
-Fase 1: Decide si una foto tomada con la cámara de un móvil
-sirve para analizarse y, cuando no sirve, **dice qué hacer para arreglarla**.
+Decide si una foto tomada con la cámara de un móvil sirve para analizarse y,
+cuando no sirve, **dice qué hacer para arreglarla**. Es independiente del modelo y
+del dominio: vale igual para piel, ojo externo o boca.
 
-Es independiente del modelo y del dominio: vale igual para piel, ojo externo o
-boca. Se puede usar suelto.
+> ## 🔴 VALIDADO Y NO FUNCIONA COMO FILTRO
+>
+> Contrastado contra **999 fotos reales** con etiqueta de un dermatólogo sobre si
+> tenían calidad suficiente para evaluarlas (dataset SCIN): **ninguna de las once
+> medidas predice ese juicio mejor que el azar** (AUC 0,49–0,55; combinándolas
+> todas, 0,547).
+>
+> Con los umbrales actuales detecta solo el **27%** de las fotos inservibles y
+> descarta el **21%** de las buenas. **No lo uses como filtro.**
+>
+> El motivo, en una frase: **calidad fotográfica no es adecuación diagnóstica.**
+> Una foto nítida y bien expuesta del sitio equivocado saca sobresaliente en los
+> once controles y es inútil. El detalle completo y qué haría falta para
+> arreglarlo, en [`RESULTADOS.md`](RESULTADOS.md).
+>
+> Lo que **sí** conserva valor: los mensajes accionables, la concordancia entre
+> varias fotos y la corrección de color con referencia — nada de eso depende de los
+> umbrales. Y quedó descartado un riesgo importante: **no discrimina por tono de
+> piel.**
 
 ## Por qué existe
 
@@ -98,9 +116,18 @@ corregida = corregir_con_referencia(img, caja=(10, 10, 80, 80))
 
 ## Calibrar los umbrales
 
-**Los umbrales de `Umbrales` son provisionales.** Están puestos con criterio pero
-sin ajustar contra fotos reales anotadas; presentarlos como definitivos sería
-inventarse un número. La herramienta para arreglarlo:
+Se intentó, con 999 fotos y etiquetas de dermatólogo, y **el resultado fue que no
+hay nada que calibrar**: las medidas no contienen la señal (ver el aviso de arriba).
+Las herramientas quedan aquí porque sirven para medir cualquier tanda de fotos y
+para reproducir el análisis:
+
+```bash
+python -m datos.scin --out results/scin.csv          # manifiesto de SCIN
+python scripts/calibrar_con_scin.py --n 1000         # mide fotos reales
+python scripts/analizar_calibracion.py               # AUC, umbrales, equidad
+```
+
+Y para una carpeta propia:
 
 ```bash
 python -m calidad.cli --carpeta fotos/ --csv medidas.csv
