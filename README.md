@@ -4,7 +4,10 @@
 > Componente de un proyecto **educativo y experimental**. No es un dispositivo
 > médico y no interviene en ninguna decisión clínica.
 
-Fase 1 del proyecto **Tono**. Decide si una foto tomada con la cámara de un móvil
+Proyecto **Tono**. La Fase 1 (este portero) está terminada; los resultados de la
+Fase 2 están en [`RESULTADOS.md`](RESULTADOS.md).
+
+Fase 1: Decide si una foto tomada con la cámara de un móvil
 sirve para analizarse y, cuando no sirve, **dice qué hacer para arreglarla**.
 
 Es independiente del modelo y del dominio: vale igual para piel, ojo externo o
