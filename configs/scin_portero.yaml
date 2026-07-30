@@ -1,0 +1,34 @@
+# Portero de calidad aprendido — SCIN
+#
+# Predice "el dermatólogo NO podría evaluar esta foto" (label = 1).
+#
+# Backbone pequeño a propósito: la meta de la Fase 3 es que esto corra dentro del
+# navegador del móvil, y una EfficientNet-B0 cuantizada ronda los 5 MB frente a
+# los 28 MB de una DenseNet-121. Elegir ya el modelo que se va a desplegar evita
+# entrenar dos veces.
+manifest: manifiesto_scin.csv
+out_dir: runs/portero_scin
+
+seed: 42
+arch: efficientnet_b0
+pretrained: true
+dropout: 0.3
+freeze_backbone: false
+
+img_size: 224
+batch_size: 32
+num_workers: 2
+use_clahe: false
+
+# La calidad de una foto no tiene lateralidad: voltear es gratis.
+allow_hflip: true
+
+epochs: 15
+lr: 1.0e-4
+weight_decay: 1.0e-4
+early_stopping_patience: 4
+
+# Las clases están casi equilibradas (39% no evaluables), así que pos_weight
+# apenas corrige nada; se deja activo por coherencia con el resto del pipeline.
+use_pos_weight: true
+balance_train: false
