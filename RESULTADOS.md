@@ -471,3 +471,89 @@ representación: A se evaluó fuera de su dominio y B dentro del suyo. El salto 
 2. **Confirmar con DDI** cuando el portal de Stanford vuelva: biopsia como verdad y
    tonos diversos por diseño.
 3. **Contener el sobreajuste** antes de sacar conclusiones más finas.
+
+---
+
+# El arreglo no era el arreglo: la brecha era sobreajuste
+
+Detectada una brecha de infradiagnóstico en piel oscura (FNR 0,237 frente a
+0,103-0,152), lo lógico era calibrar el umbral por banda de tono. Se hizo, con las
+dos condiciones que hacen creíble el resultado: **umbrales derivados en validación
+y aplicados a test**, y **tres semillas** porque la banda oscura tiene ~69 imágenes.
+
+Y salió al revés de lo esperado.
+
+## Ninguna calibración por grupo mejora nada
+
+Brecha de FNR entre bandas de tono, media de tres semillas:
+
+| Estrategia | Brecha | Desv. | FNR en piel oscura |
+|---|---|---|---|
+| **Umbral único** | **0,0792** | ±0,0194 | 0,175 |
+| Youden por grupo | 0,1385 | ±0,0745 | 0,219 |
+| Sensibilidad fija por grupo | 0,1130 | ±0,0788 | 0,211 |
+
+**El umbral compartido gana.** Las dos estrategias por grupo empeoran la brecha —y
+fíjate en las desviaciones: **±0,07 y ±0,08 frente a ±0,02**. Son entre tres y
+cuatro veces más inestables entre semillas.
+
+La razón es sencilla en retrospectiva: el umbral de cada banda se deriva de su
+porción del conjunto de **validación**, y la banda oscura aporta ahí unas 50
+imágenes. Un corte estimado con 50 casos es ruido, y aplicarlo al test añade
+varianza en lugar de quitar sesgo. **Personalizar un umbral con pocos datos hace
+más daño que compartirlo.**
+
+## Y la brecha original era, en buena parte, un artefacto
+
+Lo que sí funcionó fue algo que ni siquiera era el objetivo: **regularizar**.
+
+| | Modelo anterior | Modelo regularizado |
+|---|---|---|
+| Configuración | dropout 0,3 · wd 1e-4 · 20 épocas | dropout 0,5 · wd 1e-3 · 12 épocas |
+| AUROC en test | 0,916 (una semilla) | **0,9147 ± 0,0017** (tres semillas) |
+| Brecha de FNR | 0,134 | **0,0792 ± 0,0194** |
+| FNR en piel oscura | **0,237** | 0,175 |
+
+La brecha cayó casi a la mitad **sin tocar el umbral**, solo conteniendo la
+memorización. Y en la semilla 42, el reparto queda así:
+
+| Banda | FNR |
+|---|---|
+| 1-2 clara | **0,1161** |
+| 3-4 media | 0,0548 |
+| 5-6 oscura | 0,1053 |
+
+**La piel oscura ya no es la peor: lo es la clara.** La brecha residual de 0,079 no
+apunta de forma consistente contra ningún tono.
+
+Un matiz honesto: el sobreajuste no desapareció (train AUROC sigue en 0,999), así
+que la regularización lo atenuó sin resolverlo. Pero fue suficiente para estabilizar
+las estimaciones por subgrupo, que era el problema real.
+
+## La lección
+
+**Una brecha medida sobre un modelo que memoriza puede ser un artefacto del
+modelo, no una propiedad del mundo.** Con 69 imágenes en el subgrupo crítico y un
+AUROC de entrenamiento de 0,99998, el 0,237 inicial era mucho más frágil de lo que
+parecía —y una sola semilla no permitía verlo.
+
+El orden correcto de intervención, en contra de la intuición:
+
+1. **Primero estabilizar el modelo.** Regularizar redujo la brecha de 0,134 a 0,079.
+2. **Después medir con varias semillas.** El ±0,019 dice cuánta brecha es real.
+3. **Solo entonces, si queda algo, calibrar.** Y aquí no quedaba lo suficiente como
+   para que la calibración por grupo compensara el ruido que introduce.
+
+Es también un aviso sobre las intervenciones de equidad: **aplicar una corrección
+por subgrupo sin comprobar que mejora, sobre subgrupos pequeños, puede empeorar
+exactamente lo que pretende arreglar.** Aquí lo empeoró, y solo se supo porque se
+midió con tres semillas en lugar de una.
+
+## Estado final del modelo de piel
+
+- **AUROC 0,9147 ± 0,0017** en test, con split por paciente
+- Brecha de FNR entre bandas de tono: **0,0792 ± 0,0194**, sin desventaja
+  consistente para la piel oscura
+- Umbral único, calibrado en validación
+- Pendiente: confirmar con **DDI** (biopsia como verdad) cuando el portal de
+  Stanford vuelva, y atacar el sobreajuste residual
