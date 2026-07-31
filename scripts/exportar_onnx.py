@@ -69,6 +69,10 @@ def main() -> None:
     ap.add_argument("--checkpoint", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--sin-cuantizar", action="store_true")
+    ap.add_argument("--muestras", default=None,
+                    help="Carpeta con imagenes REALES para verificar la exportacion")
+    ap.add_argument("--error-max", type=float, default=0.02,
+                    help="Diferencia maxima tolerada frente a PyTorch")
     args = ap.parse_args()
 
     modelo, ckpt = load_checkpoint(args.checkpoint, map_location="cpu")
@@ -93,7 +97,9 @@ def main() -> None:
     print(f"ONNX sin cuantizar: {mb:.1f} MB")
 
     if args.sin_cuantizar:
-        sin_cuantizar.rename(salida)
+        # `replace` y no `rename`: en Windows renombrar falla si el destino existe,
+        # que es justo el caso al reexportar sobre un modelo ya desplegado.
+        sin_cuantizar.replace(salida)
     else:
         from onnxruntime.quantization import QuantType, quantize_dynamic
 
@@ -103,22 +109,52 @@ def main() -> None:
         print(f"ONNX cuantizado:   {salida.stat().st_size / 1e6:.1f} MB "
               f"({mb / (salida.stat().st_size / 1e6):.1f}x mas pequeno)")
 
-    # --- Verificación: el modelo exportado debe coincidir con el original ---
+    # --- Verificación contra PyTorch ---
+    #
+    # ATENCIÓN: la primera versión de esto verificaba con `torch.randn`, es decir
+    # ruido gaussiano. Daba una diferencia de 0,003 y parecía perfecto. Sobre
+    # imágenes REALES el error de la cuantización int8 resultó ser de 0,29 y 0,48
+    # —cien veces mayor— porque el ruido no activa la red como lo hace una foto.
+    # Verificar con entradas que no se parecen a las reales no verifica nada.
     import numpy as np
     import onnxruntime as ort
 
     sesion = ort.InferenceSession(str(salida), providers=["CPUExecutionProvider"])
-    lado = ckpt["config"].get("img_size", 224)   # estaba cableado a 224 y rompia a 320
+    lado = ckpt["config"].get("img_size", 224)
+
+    entradas = []
+    if args.muestras:
+        import cv2
+
+        from src.data import build_transforms
+
+        tf = build_transforms(lado, train=False)
+        for ruta in sorted(Path(args.muestras).glob("*"))[:12]:
+            if ruta.suffix.lower() not in {".jpg", ".jpeg", ".png"}:
+                continue
+            img = cv2.cvtColor(cv2.imread(str(ruta)), cv2.COLOR_BGR2RGB)
+            h, w = img.shape[:2]
+            L = min(h, w)
+            rec = img[(h - L) // 2:(h - L) // 2 + L, (w - L) // 2:(w - L) // 2 + L]
+            entradas.append(tf(image=rec)["image"].unsqueeze(0))
+    if not entradas:
+        print("AVISO: sin imagenes de muestra, la verificacion usa ruido y NO es fiable.")
+        entradas = [torch.randn(1, 3, lado, lado) for _ in range(8)]
+
     diferencias = []
-    for _ in range(8):
-        x = torch.randn(1, 3, lado, lado)
+    for x in entradas:
         with torch.no_grad():
             p_torch = float(envoltorio(x)[0].item())
         p_onnx = float(sesion.run(None, {"imagen": x.numpy()})[0].ravel()[0])
         diferencias.append(abs(p_torch - p_onnx))
-    print(f"diferencia maxima frente a PyTorch: {max(diferencias):.5f}")
-    if max(diferencias) > 0.05:
-        print("AVISO: la cuantizacion cambia las predicciones mas de lo aceptable.")
+    peor = max(diferencias)
+    print(f"verificado sobre {len(entradas)} entradas | diferencia maxima: {peor:.5f}")
+    if peor > args.error_max:
+        raise SystemExit(
+            "EXPORTACION RECHAZADA: la diferencia maxima "
+            f"({peor:.4f}) supera el limite ({args.error_max}). "
+            "Reexporta con --sin-cuantizar."
+        )
 
     meta = {
         "arch": ckpt["config"].get("arch"),

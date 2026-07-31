@@ -749,3 +749,52 @@ Tres candidatos superaban al desplegado en AUROC, y **ninguno se despliega**.
 Elegir por el mejor número de test es exactamente el error contra el que este
 proyecto lleva advirtiendo desde el principio: con ±2,3 puntos de ruido, quedarse
 con el máximo es quedarse con la suerte.
+
+---
+
+## Un fallo de despliegue que solo apareció usando la web de verdad
+
+La aplicación publicada daba puntuaciones **muy distintas** de las del modelo
+original sobre las mismas fotos:
+
+| Foto | PyTorch | Web |
+|---|---|---|
+| Lesión grande | 0,534 | 0,252 |
+| Lesión pequeña | 0,644 | **0,117** |
+
+No era caché ni un modelo desactualizado —el fichero servido tenía el mismo hash
+que el local—. Era la **cuantización a int8**.
+
+### Por qué no lo detecté al exportar
+
+El script verificaba el modelo exportado comparándolo con PyTorch sobre entradas
+generadas con `torch.randn`: **ruido gaussiano**. Daba una diferencia máxima de
+**0,003** y parecía perfecto.
+
+Sobre imágenes reales, la diferencia era de **0,29 y 0,48**. Cien veces mayor.
+
+El ruido aleatorio no activa una red convolucional como lo hace una fotografía:
+recorre un régimen del espacio de entradas donde los errores de cuantización se
+promedian y desaparecen. **Verificar con entradas que no se parecen a las reales
+no verifica nada** — es el mismo error que cometí con el conjunto de test del
+portero de calidad, en otra forma.
+
+### La corrección
+
+1. La verificación ahora exige **imágenes reales** (`--muestras`) y avisa
+   explícitamente si se cae al ruido.
+2. Y **rechaza la exportación** si la diferencia supera un límite, en vez de
+   imprimir un aviso que se puede pasar por alto. Con las dos fotos reales, la
+   versión cuantizada falla el control con 0,481.
+3. Se despliega el modelo **sin cuantizar**: diferencia frente a PyTorch de
+   **0,00000**, a costa de pasar de 7,5 MB a 27 MB.
+
+Es un intercambio que merece la pena: un modelo cuatro veces más ligero que da
+respuestas distintas al modelo que se validó no es una optimización, es otro
+modelo del que no se sabe nada.
+
+### La lección, otra vez la misma
+
+Probar en local no es probar. El error solo apareció **usando la página publicada
+con fotos reales**, que es exactamente lo que hizo falta antes para descubrir el
+`.gitignore` que dejaba fuera los metadatos.
