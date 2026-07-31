@@ -7,104 +7,102 @@
 <meta name="description" content="Proyecto educativo: analiza una foto de piel en tu propio dispositivo. No es una herramienta diagnóstica.">
 <style>
   :root {
-    --fondo: #FBFAF9;
-    --fondo-2: #F2EEEC;
-    --tinta: #1B1614;
-    --suave: #6E625D;
-    --linea: #E3DBD6;
-    --acento: #124A63;
-    --acento-claro: #E6EEF2;
-    --alarma: #A4243B;
-    --alarma-clara: #F6E8EA;
-    --ok: #1F6B4A;
+    --fondo:#FBFAF9; --fondo-2:#F2EEEC; --tinta:#1B1614; --suave:#6E625D; --linea:#E3DBD6;
+    --acento:#124A63; --acento-claro:#E6EEF2;
+    --alarma:#A4243B; --alarma-clara:#F6E8EA;
+    --b1:#2E7D54; --b2:#7FA05A; --b3:#C8A23C; --b4:#D2762F; --b5:#A4243B;
     --mst-1:#f6ede4; --mst-2:#f3e7db; --mst-3:#f7ead0; --mst-4:#eadaba; --mst-5:#d7bd96;
     --mst-6:#a07e56; --mst-7:#825c43; --mst-8:#604134; --mst-9:#3a312a; --mst-10:#292420;
-    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --fondo:#14100F; --fondo-2:#1E1918; --tinta:#F2EDE9; --suave:#A2948D;
-      --linea:#2F2725; --acento:#7CBED6; --acento-claro:#16303C;
-      --alarma:#E88A9B; --alarma-clara:#3A1D23; --ok:#6FBF97;
+      --fondo:#14100F; --fondo-2:#1E1918; --tinta:#F2EDE9; --suave:#A2948D; --linea:#2F2725;
+      --acento:#7CBED6; --acento-claro:#16303C; --alarma:#E88A9B; --alarma-clara:#3A1D23;
+      --b1:#5FBF8C; --b2:#A8C77A; --b3:#E0BE5C; --b4:#E89A5E; --b5:#E88A9B;
     }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin:0; background:var(--fondo); color:var(--tinta);
-    font-family:var(--sans); font-size:17px; line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .envoltura { max-width:640px; margin:0 auto; padding:0 1.15rem 3rem; }
-  h1 {
-    font-family:var(--serif); font-weight:400; font-size:clamp(2rem,7vw,2.8rem);
-    line-height:1.05; letter-spacing:-0.02em; margin:1.6rem 0 .5rem;
-  }
-  h2 { font-family:var(--serif); font-weight:400; font-size:1.35rem; margin:2rem 0 .6rem; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--fondo); color:var(--tinta); font-family:var(--sans);
+         font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .envoltura { max-width:660px; margin:0 auto; padding:0 1.15rem 3rem; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,7vw,2.8rem);
+       line-height:1.05; letter-spacing:-.02em; margin:1.6rem 0 .5rem; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.35rem; margin:2.2rem 0 .6rem; }
+  h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
   p { margin:0 0 .9rem; }
   .sub { color:var(--suave); margin-bottom:1.4rem; }
 
   .tira { display:flex; border-radius:2px; overflow:hidden; border:1px solid var(--linea); margin:1.2rem 0 .4rem; }
   .tira > span { flex:1; height:9px; }
-  .tira-pie { display:flex; justify-content:space-between; font-family:var(--mono); font-size:.68rem; color:var(--suave); letter-spacing:.04em; }
+  .tira-pie { display:flex; justify-content:space-between; font-family:var(--mono);
+              font-size:.68rem; color:var(--suave); letter-spacing:.04em; }
 
-  .aviso {
-    background:var(--alarma-clara); border-left:3px solid var(--alarma);
-    padding:1rem 1.1rem; margin:1.4rem 0; font-size:.95rem;
-  }
+  .aviso { background:var(--alarma-clara); border-left:3px solid var(--alarma);
+           padding:1rem 1.1rem; margin:1.4rem 0; font-size:.95rem; }
   .aviso strong { display:block; margin-bottom:.35rem; }
 
-  .zona {
-    border:2px dashed var(--linea); border-radius:6px; padding:2.2rem 1.2rem;
-    text-align:center; cursor:pointer; background:var(--fondo-2);
-    transition:border-color .15s, background .15s;
-  }
+  .zona { display:block; border:2px dashed var(--linea); border-radius:6px; padding:2.2rem 1.2rem;
+          text-align:center; cursor:pointer; background:var(--fondo-2); }
   .zona:hover, .zona:focus-visible { border-color:var(--acento); outline:none; }
-  .zona.activa { border-color:var(--acento); background:var(--acento-claro); }
   .zona p { margin:0; color:var(--suave); font-size:.95rem; }
   .zona .grande { font-size:1.05rem; color:var(--tinta); margin-bottom:.3rem; }
   input[type=file] { display:none; }
 
-  button {
-    font:inherit; font-weight:600; cursor:pointer; border:0; border-radius:4px;
-    padding:.75rem 1.4rem; background:var(--acento); color:var(--fondo);
-    width:100%; margin-top:.9rem;
-  }
+  button { font:inherit; font-weight:600; cursor:pointer; border:0; border-radius:4px;
+           padding:.75rem 1.4rem; background:var(--acento); color:var(--fondo);
+           width:100%; margin-top:.9rem; }
   button:disabled { opacity:.45; cursor:not-allowed; }
   button.secundario { background:transparent; color:var(--acento); border:1px solid var(--linea); }
-
   .estado { font-family:var(--mono); font-size:.8rem; color:var(--suave); margin-top:.7rem; text-align:center; }
 
-  .resultado { display:none; margin-top:1.6rem; }
+  .resultado { display:none; margin-top:1.8rem; }
   .resultado.visible { display:block; }
   .imagenes { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
   .imagenes figure { margin:0; }
-  .imagenes canvas, .imagenes img { width:100%; border-radius:4px; display:block; background:var(--fondo-2); }
-  .imagenes figcaption { font-family:var(--mono); font-size:.7rem; color:var(--suave); margin-top:.3rem; text-align:center; }
+  .imagenes canvas { width:100%; border-radius:4px; display:block; background:var(--fondo-2); }
+  .imagenes figcaption { font-family:var(--mono); font-size:.7rem; color:var(--suave);
+                         margin-top:.3rem; text-align:center; }
 
-  .prob { font-family:var(--mono); font-size:2.1rem; letter-spacing:-.02em; margin:1.2rem 0 .2rem; }
-  .etiqueta { font-weight:600; font-size:1.05rem; }
-  .etiqueta.alta { color:var(--alarma); }
-  .etiqueta.baja { color:var(--ok); }
+  .veredicto { border:1px solid var(--linea); border-radius:6px; padding:1.1rem 1.2rem; margin:1.4rem 0; }
+  .veredicto .titulo { font-size:1.25rem; font-weight:700; margin-bottom:.15rem; }
+  .veredicto .frase { font-size:1.02rem; margin:.5rem 0 0; }
+  .veredicto .frase b { font-size:1.15rem; }
+  .veredicto .crudo { font-family:var(--mono); font-size:.78rem; color:var(--suave); margin-top:.6rem; }
 
-  .control { margin:1.6rem 0; padding:1rem 1.1rem; background:var(--fondo-2); border-radius:4px; }
-  .control label { display:block; font-size:.9rem; margin-bottom:.5rem; }
-  .control input[type=range] { width:100%; accent-color:var(--acento); }
-  .control .valor { font-family:var(--mono); font-weight:600; color:var(--acento); }
-  .control .nota { font-size:.85rem; color:var(--suave); margin:.6rem 0 0; }
+  .escala { display:flex; gap:3px; margin:.9rem 0 .35rem; }
+  .escala div { flex:1; height:26px; border-radius:3px; opacity:.28;
+                transition:opacity .2s, transform .2s; }
+  .escala div.activa { opacity:1; transform:scaleY(1.25); }
+  .escala .s1{background:var(--b1)} .escala .s2{background:var(--b2)}
+  .escala .s3{background:var(--b3)} .escala .s4{background:var(--b4)} .escala .s5{background:var(--b5)}
+  .escala-pie { display:flex; justify-content:space-between; font-family:var(--mono);
+                font-size:.66rem; color:var(--suave); }
 
   table { border-collapse:collapse; width:100%; font-size:.9rem; margin:.8rem 0; }
-  th,td { text-align:left; padding:.5rem .6rem .5rem 0; border-bottom:1px solid var(--linea); }
-  th { font-family:var(--mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--suave); font-weight:400; }
+  th,td { text-align:left; padding:.5rem .5rem .5rem 0; border-bottom:1px solid var(--linea); }
+  th { font-family:var(--mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.07em;
+       color:var(--suave); font-weight:400; }
   td.num { font-family:var(--mono); text-align:right; }
+  tr.activa td { background:var(--acento-claro); font-weight:600; }
+  .punto { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:.45rem; }
 
   details { border-top:1px solid var(--linea); padding:.9rem 0; }
   summary { cursor:pointer; font-weight:600; font-size:.95rem; }
   details p, details ul { font-size:.93rem; color:var(--suave); margin-top:.7rem; }
   details li { margin-bottom:.4rem; }
 
-  footer { border-top:1px solid var(--linea); margin-top:2.5rem; padding-top:1.2rem; font-family:var(--mono); font-size:.72rem; color:var(--suave); }
+  .control { margin:1rem 0 0; padding:1rem 1.1rem; background:var(--fondo-2); border-radius:4px; }
+  .control label { display:block; font-size:.9rem; margin-bottom:.5rem; }
+  .control input[type=range] { width:100%; accent-color:var(--acento); }
+  .control .nota { font-size:.86rem; color:var(--suave); margin:.7rem 0 0; }
+  .valor { font-family:var(--mono); font-weight:600; color:var(--acento); }
+  .recomendado { font-size:.82rem; color:var(--acento); font-weight:600; margin:0 0 .6rem; }
+
+  footer { border-top:1px solid var(--linea); margin-top:2.5rem; padding-top:1.2rem;
+           font-family:var(--mono); font-size:.72rem; color:var(--suave); }
   a { color:var(--acento); }
 </style>
 </head>
@@ -127,14 +125,16 @@
     <strong>⚠️ Esto no diagnostica nada</strong>
     Proyecto educativo y experimental. No es un dispositivo médico, no está validado
     clínicamente y no debe usarse para ninguna decisión de salud.
-    <strong style="margin-top:.6rem">Un resultado bajo no descarta nada.</strong>
-    Si te preocupa una lesión, la respuesta la tiene un dermatólogo, no esta página.
+    <strong style="margin-top:.6rem">Una puntuación baja no descarta nada.</strong>
+    De las imágenes que este modelo puntuó en su rango más bajo, <strong>9 de cada 100
+    eran malignas de todos modos</strong>. Si te preocupa una lesión, la respuesta la tiene
+    un dermatólogo.
   </div>
 
   <label class="zona" id="zona" tabindex="0">
     <input type="file" id="archivo" accept="image/*">
     <p class="grande">Toca para elegir o hacer una foto</p>
-    <p>La imagen se procesa aquí mismo y no se envía a ningún sitio</p>
+    <p>Se procesa aquí mismo y no se envía a ningún sitio</p>
   </label>
   <button id="analizar" disabled>Analizar</button>
   <p class="estado" id="estado">Cargando el modelo…</p>
@@ -145,22 +145,54 @@
       <figure><canvas id="lienzo-cam" width="224" height="224"></canvas><figcaption>dónde mira el modelo</figcaption></figure>
     </div>
 
-    <div class="prob" id="prob">—</div>
-    <div class="etiqueta" id="etiqueta"></div>
-    <p class="nota" id="nota-cam" style="color:var(--suave);font-size:.9rem;margin-top:.6rem"></p>
-
-    <div class="control">
-      <label for="prevalencia">
-        Prevalencia esperada en la población: <span class="valor" id="valor-prev">52%</span>
-      </label>
-      <input type="range" id="prevalencia" min="1" max="90" step="1" value="52">
-      <p class="nota">
-        Mueve el control y observa: <strong>la probabilidad cambia, el mapa de calor no</strong>.
-        Un clasificador no dice cuánta enfermedad hay en la imagen, sino cuánta probabilidad
-        tiene dado lo frecuente que era en su entrenamiento. Aplicarlo donde la enfermedad es
-        más rara o más común desplaza todas las probabilidades.
-      </p>
+    <div class="veredicto">
+      <div class="titulo" id="titulo">—</div>
+      <div class="escala" id="escala">
+        <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+      </div>
+      <div class="escala-pie"><span>señal más baja</span><span>señal más alta</span></div>
+      <p class="frase" id="frase"></p>
+      <p class="crudo" id="crudo"></p>
     </div>
+
+    <h3>Cómo se lee ese número</h3>
+    <p style="font-size:.93rem;color:var(--suave)">
+      No es un porcentaje de riesgo, es la puntuación que da el modelo. Para saber qué
+      significa, esto es lo que ocurrió realmente con las <strong>899 imágenes de prueba</strong>
+      que el modelo nunca vio mientras aprendía:
+    </p>
+    <table id="tabla-bandas">
+      <thead><tr><th>Puntuación</th><th class="num">Imágenes</th><th class="num">Resultaron malignas</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <p style="font-size:.9rem;color:var(--suave)">
+      Fíjate en la primera fila: incluso con la puntuación más baja, <strong>casi 1 de cada 10
+      era maligna</strong>. Por eso una puntuación baja no tranquiliza.
+    </p>
+
+    <p id="nota-cam" style="font-size:.9rem;color:var(--suave)"></p>
+
+    <details>
+      <summary>Ajuste avanzado: prevalencia (no hace falta tocarlo)</summary>
+      <div class="control">
+        <p class="recomendado">Recomendado: déjalo en 52%, el valor con el que se entrenó.</p>
+        <label for="prevalencia">
+          Prevalencia asumida en la población: <span class="valor" id="valor-prev">52%</span>
+        </label>
+        <input type="range" id="prevalencia" min="1" max="90" step="1" value="52">
+        <p class="nota">
+          Está aquí para enseñar algo, no para que lo configures. Un clasificador no dice
+          cuánta enfermedad hay en la imagen, sino cuánta probabilidad tiene <em>dado lo
+          frecuente que era la enfermedad durante su entrenamiento</em>. Muévelo y verás que
+          <strong>la puntuación cambia mientras el mapa de calor no</strong>: lo que se mueve
+          es el punto de corte, no lo que el modelo ve.
+        </p>
+        <p class="nota">
+          <strong>Aviso:</strong> si lo cambias, la tabla de arriba deja de aplicar, porque
+          está medida con el valor de entrenamiento.
+        </p>
+      </div>
+    </details>
 
     <button class="secundario" id="otra">Analizar otra foto</button>
   </div>
@@ -168,41 +200,36 @@
   <h2>Qué es esto</h2>
   <p>
     Una red DenseNet-121 entrenada sobre <strong>Fitzpatrick17k</strong> para distinguir
-    lesiones malignas de benignas. Todo el cálculo ocurre en tu navegador con ONNX Runtime Web.
+    lesiones malignas de benignas. Todo el cálculo ocurre en tu navegador.
   </p>
-
   <table>
-    <tr><th>Métrica</th><th style="text-align:right">Valor</th></tr>
+    <tr><th>Métrica</th><th class="num">Valor</th></tr>
     <tr><td>AUROC en test (3 semillas)</td><td class="num">0,9147 ± 0,0017</td></tr>
-    <tr><td>Brecha entre tonos de piel</td><td class="num">0,079 ± 0,019</td></tr>
-    <tr><td>Peso del modelo</td><td class="num" id="peso">7,8 MB</td></tr>
+    <tr><td>Diferencia entre tonos de piel</td><td class="num">0,079 ± 0,019</td></tr>
+    <tr><td>Peso del modelo</td><td class="num">7,5 MB</td></tr>
   </table>
 
   <details>
     <summary>¿Funciona igual en piel oscura?</summary>
     <p>
       Es la pregunta que originó el proyecto, y la respuesta medida es <strong>sí</strong>,
-      sobre 509 casos malignos en piel oscura. La diferencia de infradiagnóstico entre bandas
-      de tono es de 0,079, y la banda peor servida resulta ser la <em>clara</em>, no la oscura.
+      sobre 509 casos malignos en piel oscura. La diferencia de casos no detectados entre
+      bandas de tono es de 0,079, y la banda peor servida resulta ser la <em>clara</em>.
     </p>
     <p>
-      Por el camino se encontró algo más útil: una brecha aparente de 0,237 en piel oscura
+      Por el camino salió algo más útil: una diferencia aparente de 0,237 en piel oscura
       <strong>era un artefacto del sobreajuste</strong>. Regularizar el modelo la redujo a la
-      mitad sin tocar nada más, mientras que calibrar el umbral por grupo —la corrección
-      «obvia»— la <em>empeoraba</em>, porque se estimaba con muy pocos datos.
+      mitad, mientras que calibrar el umbral por grupo —la corrección «obvia»— la
+      <em>empeoraba</em>.
     </p>
   </details>
 
   <details>
     <summary>Qué es el mapa de calor</summary>
     <p>
-      Muestra qué zonas de la imagen empujan la predicción hacia «maligno». Si el calor cae
-      sobre la lesión, el modelo mira lo que debe. Si cae en el borde, en una regla de medición
-      o en una marca de bolígrafo, se está apoyando en un atajo espurio y la predicción vale poco.
-    </p>
-    <p>
-      Se calcula con el método CAM, que en esta arquitectura equivale a Grad-CAM pero sin
-      necesitar gradientes, así que cabe en el navegador.
+      Muestra qué zonas empujan la predicción hacia «maligno». Si el calor cae sobre la
+      lesión, el modelo mira lo que debe. Si cae en el borde, en una regla de medición o en
+      una marca de bolígrafo, se apoya en un atajo y la predicción vale poco.
     </p>
   </details>
 
@@ -213,7 +240,7 @@
       <li>Las etiquetas son diagnósticos clínicos, <strong>no confirmados por biopsia</strong>.</li>
       <li>El modelo <strong>sobreajusta</strong>: memoriza más de lo deseable pese a la regularización.</li>
       <li>Solo distingue maligno de benigno entre lesiones neoplásicas. No reconoce eczema, psoriasis ni infecciones, y ante ellas dará una respuesta sin sentido.</li>
-      <li>No hay control de calidad de la foto: un intento de construirlo <a href="https://github.com/GGGuardin/tono/blob/main/RESULTADOS.md">falló y está documentado</a>.</li>
+      <li>No comprueba si la foto tiene calidad suficiente: un intento de construir ese control <a href="https://github.com/GGGuardin/tono/blob/main/RESULTADOS.md">falló y está documentado</a>.</li>
     </ul>
   </details>
 
@@ -226,12 +253,40 @@
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
 <script>
 const TAM = 224, MEDIA = [0.485, 0.456, 0.406], DESV = [0.229, 0.224, 0.225];
-let sesion = null, meta = null, imagenActual = null, ultimaProb = null, ultimoCam = null;
 
+// Bandas empíricas medidas sobre las 899 imágenes del conjunto de prueba. No son
+// categorías de riesgo clínico: son lo que ocurrió de hecho con las imágenes que
+// el modelo puntuó en cada rango.
+const BANDAS = [
+  { min:0,    max:0.05, n:344, pct:9,  titulo:'Señal muy baja' },
+  { min:0.05, max:0.15, n:61,  pct:23, titulo:'Señal baja' },
+  { min:0.15, max:0.35, n:50,  pct:42, titulo:'Señal intermedia' },
+  { min:0.35, max:0.65, n:45,  pct:47, titulo:'Señal alta' },
+  { min:0.65, max:1.01, n:399, pct:86, titulo:'Señal muy alta' },
+];
+
+let sesion = null, meta = null, imagenActual = null, ultimaProb = null, ultimoCam = null;
 const $ = id => document.getElementById(id);
 const estado = t => { $('estado').textContent = t; };
 
+function pintarTabla(activa) {
+  const cuerpo = $('tabla-bandas').querySelector('tbody');
+  cuerpo.innerHTML = '';
+  BANDAS.forEach((b, i) => {
+    const tr = document.createElement('tr');
+    if (i === activa) tr.className = 'activa';
+    const rango = b.max > 1 ? 'más de ' + b.min.toFixed(2)
+                : b.min === 0 ? 'menos de ' + b.max.toFixed(2)
+                : b.min.toFixed(2) + ' – ' + b.max.toFixed(2);
+    tr.innerHTML = '<td><span class="punto" style="background:var(--b' + (i + 1) + ')"></span>'
+      + rango + '</td><td class="num">' + b.n + '</td>'
+      + '<td class="num">' + b.pct + ' de cada 100</td>';
+    cuerpo.appendChild(tr);
+  });
+}
+
 async function arrancar() {
+  pintarTabla(-1);
   try {
     meta = await (await fetch('modelo.json')).json();
     $('prevalencia').value = Math.round(meta.prevalencia_entrenamiento * 100);
@@ -244,38 +299,31 @@ async function arrancar() {
 }
 
 function aTensor(img) {
-  const c = $('lienzo-entrada'), ctx = c.getContext('2d');
-  // Recorte cuadrado centrado antes de escalar: evita deformar la lesión
+  const ctx = $('lienzo-entrada').getContext('2d');
   const lado = Math.min(img.width, img.height);
   ctx.drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, TAM, TAM);
   const d = ctx.getImageData(0, 0, TAM, TAM).data;
   const t = new Float32Array(3 * TAM * TAM);
-  for (let i = 0; i < TAM * TAM; i++) {
-    for (let c2 = 0; c2 < 3; c2++) {
-      t[c2 * TAM * TAM + i] = (d[i * 4 + c2] / 255 - MEDIA[c2]) / DESV[c2];
-    }
-  }
+  for (let i = 0; i < TAM * TAM; i++)
+    for (let c = 0; c < 3; c++)
+      t[c * TAM * TAM + i] = (d[i * 4 + c] / 255 - MEDIA[c]) / DESV[c];
   return new ort.Tensor('float32', t, [1, 3, TAM, TAM]);
 }
 
 function pintarCam(cam, lado) {
-  const c = $('lienzo-cam'), ctx = c.getContext('2d');
+  const ctx = $('lienzo-cam').getContext('2d');
   let min = Infinity, max = -Infinity;
   for (const v of cam) { if (v < min) min = v; if (v > max) max = v; }
   const rango = max - min || 1;
-
   const base = $('lienzo-entrada').getContext('2d').getImageData(0, 0, TAM, TAM);
   const salida = ctx.createImageData(TAM, TAM);
   for (let y = 0; y < TAM; y++) {
     for (let x = 0; x < TAM; x++) {
-      // Vecino más próximo del mapa 7x7 al lienzo 224x224
       const v = (cam[Math.floor(y / TAM * lado) * lado + Math.floor(x / TAM * lado)] - min) / rango;
-      const i = (y * TAM + x) * 4;
-      // Rampa azul -> verde -> rojo
+      const i = (y * TAM + x) * 4, a = 0.45;
       const r = Math.max(0, Math.min(255, 255 * (v - 0.5) * 2));
       const g = Math.max(0, Math.min(255, 255 * (1 - Math.abs(v - 0.5) * 2)));
       const b = Math.max(0, Math.min(255, 255 * (0.5 - v) * 2));
-      const a = 0.45;
       salida.data[i]     = base.data[i]     * (1 - a) + r * a;
       salida.data[i + 1] = base.data[i + 1] * (1 - a) + g * a;
       salida.data[i + 2] = base.data[i + 2] * (1 - a) + b * a;
@@ -287,36 +335,45 @@ function pintarCam(cam, lado) {
 
 function energiaBordes(cam, lado) {
   const m = Math.max(1, Math.round(lado * 0.15));
-  let total = 0, centro = 0;
   let min = Infinity;
   for (const v of cam) if (v < min) min = v;
-  for (let y = 0; y < lado; y++) {
+  let total = 0, centro = 0;
+  for (let y = 0; y < lado; y++)
     for (let x = 0; x < lado; x++) {
-      const v = cam[y * lado + x] - min;   // desplazado a positivo
+      const v = cam[y * lado + x] - min;
       total += v;
       if (y >= m && y < lado - m && x >= m && x < lado - m) centro += v;
     }
-  }
   return total > 0 ? 1 - centro / total : NaN;
 }
 
 function corregirPrevalencia(p, origen, destino) {
-  const odds = p / (1 - p);
-  const factor = (destino / (1 - destino)) / (origen / (1 - origen));
-  const o = odds * factor;
+  const o = (p / (1 - p)) * ((destino / (1 - destino)) / (origen / (1 - origen)));
   return o / (1 + o);
 }
 
 function mostrar() {
   if (ultimaProb === null) return;
   const destino = Math.min(0.99, Math.max(0.01, +$('prevalencia').value / 100));
-  const p = corregirPrevalencia(ultimaProb, meta.prevalencia_entrenamiento, destino);
-  const alta = p >= meta.umbral;
-  $('prob').textContent = p.toFixed(3);
-  $('etiqueta').textContent = alta
-    ? 'Por encima del umbral del modelo — esto NO es un diagnóstico'
-    : 'Por debajo del umbral del modelo — esto NO descarta nada';
-  $('etiqueta').className = 'etiqueta ' + (alta ? 'alta' : 'baja');
+  const ajustada = Math.abs(destino - meta.prevalencia_entrenamiento) > 1e-4;
+  const p = ajustada ? corregirPrevalencia(ultimaProb, meta.prevalencia_entrenamiento, destino)
+                     : ultimaProb;
+
+  // La lectura empírica se ancla SIEMPRE a la puntuación sin ajustar: las bandas
+  // se midieron con la prevalencia de entrenamiento y dejan de valer si se cambia.
+  let i = BANDAS.findIndex(b => ultimaProb >= b.min && ultimaProb < b.max);
+  if (i < 0) i = BANDAS.length - 1;
+  const banda = BANDAS[i];
+
+  $('titulo').textContent = banda.titulo;
+  [...$('escala').children].forEach((d, k) => d.classList.toggle('activa', k === i));
+  $('frase').innerHTML = 'De las imágenes de prueba con una puntuación parecida, '
+    + '<b>' + banda.pct + ' de cada 100</b> resultaron malignas.';
+  pintarTabla(i);
+
+  $('crudo').textContent = 'puntuación del modelo: ' + ultimaProb.toFixed(3)
+    + (ajustada ? '   ·   ajustada a prevalencia ' + Math.round(destino * 100) + '%: '
+                  + p.toFixed(3) + ' — la tabla ya no aplica' : '');
 }
 
 async function analizar() {
@@ -331,12 +388,11 @@ async function analizar() {
     pintarCam(ultimoCam, lado);
 
     const borde = energiaBordes(ultimoCam, lado);
-    const base = 1 - Math.pow(1 - 2 * 0.15, 2);   // 0,51 para un mapa uniforme
-    $('nota-cam').textContent = isNaN(borde)
-      ? 'Mapa sin estructura.'
+    const base = 1 - Math.pow(1 - 2 * 0.15, 2);
+    $('nota-cam').textContent = isNaN(borde) ? 'Mapa sin estructura.'
       : borde > base
-        ? `⚠️ La atención se va a los bordes (${borde.toFixed(2)} frente a ${base.toFixed(2)} de un mapa sin estructura): posible atajo espurio.`
-        : `Atención concentrada en el centro (${borde.toFixed(2)} frente a ${base.toFixed(2)} de un mapa sin estructura).`;
+        ? '⚠️ La atención se va a los bordes de la imagen en vez de al centro. Es señal de que el modelo se apoya en algo que no es la lesión, así que este resultado vale aún menos de lo habitual.'
+        : 'La atención se concentra en el centro de la imagen, que es donde debería estar la lesión.';
 
     mostrar();
     $('resultado').classList.add('visible');
@@ -354,16 +410,18 @@ $('archivo').addEventListener('change', ev => {
   const img = new Image();
   img.onload = () => {
     imagenActual = img;
+    ultimaProb = null; ultimoCam = null;
     $('analizar').disabled = false;
     estado('Foto cargada. Pulsa Analizar.');
     const ctx = $('lienzo-entrada').getContext('2d');
     const lado = Math.min(img.width, img.height);
     ctx.drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, TAM, TAM);
-    $('resultado').classList.add('visible');
-    $('prob').textContent = '—';
-    $('etiqueta').textContent = '';
-    $('nota-cam').textContent = '';
     $('lienzo-cam').getContext('2d').clearRect(0, 0, TAM, TAM);
+    $('titulo').textContent = '—';
+    $('frase').textContent = ''; $('crudo').textContent = ''; $('nota-cam').textContent = '';
+    [...$('escala').children].forEach(d => d.classList.remove('activa'));
+    pintarTabla(-1);
+    $('resultado').classList.add('visible');
   };
   img.onerror = () => estado('No se pudo leer esa imagen.');
   img.src = URL.createObjectURL(f);
@@ -372,7 +430,6 @@ $('archivo').addEventListener('change', ev => {
 ['dragover', 'dragleave', 'drop'].forEach(ev => {
   $('zona').addEventListener(ev, e => {
     e.preventDefault();
-    $('zona').classList.toggle('activa', ev === 'dragover');
     if (ev === 'drop' && e.dataTransfer.files[0]) {
       $('archivo').files = e.dataTransfer.files;
       $('archivo').dispatchEvent(new Event('change'));
