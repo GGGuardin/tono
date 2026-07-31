@@ -1,0 +1,35 @@
+# Igual que combinado_320 pero a 384 px, para ver si queda mas margen
+# El salto de 224 a 320 dio la mejora grande; esto comprueba si continua.
+#
+# Tres cambios frente al modelo anterior, cada uno con su motivo:
+#
+# 1. **320 px en vez de 224.** El melanoma se distingue por detalles finos —borde
+#    irregular, variación de color dentro de la lesión— que a 224 px se pierden.
+#    Es la mejora más probable para el fallo medido: se escapa 1 de cada 6.
+# 2. **Dos fuentes.** Atlas dermatológicos (Fitzpatrick17k) y fotos de móvil
+#    (PAD-UFES-20). Entrenar con una sola fue lo que hundió al modelo anterior al
+#    cambiar de dominio (AUROC 0,899 -> 0,684).
+# 3. **Regularización mantenida**, que ya demostró reducir la brecha entre tonos
+#    de 0,134 a 0,079.
+manifest: manifiesto_combinado.csv
+out_dir: runs/combinado384
+
+seed: 42
+arch: densenet121
+pretrained: true
+dropout: 0.5
+freeze_backbone: false
+
+img_size: 384
+batch_size: 16          # baja de 32: a 320 px cada imagen ocupa el doble de memoria
+num_workers: 2
+use_clahe: false
+allow_hflip: true
+
+epochs: 14
+lr: 1.0e-4
+weight_decay: 1.0e-3
+early_stopping_patience: 4
+
+use_pos_weight: true
+balance_train: false
