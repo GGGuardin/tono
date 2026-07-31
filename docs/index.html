@@ -128,7 +128,7 @@
     <strong style="margin-top:.6rem">Una puntuación baja no descarta nada.</strong>
     De las imágenes que este modelo puntuó en su rango más bajo, <strong>9 de cada 100
     eran malignas de todos modos</strong>. Y falla más justo en lo más grave:
-    <strong>se le escapa 1 de cada 6 melanomas</strong>. Si te preocupa una lesión, la
+    <strong>se le escapa cerca de 1 de cada 11 melanomas</strong>. Si te preocupa una lesión, la
     respuesta la tiene un dermatólogo.
   </div>
 
@@ -159,7 +159,7 @@
     <h3>Cómo se lee ese número</h3>
     <p style="font-size:.93rem;color:var(--suave)">
       No es un porcentaje de riesgo, es la puntuación que da el modelo. Para saber qué
-      significa, esto es lo que ocurrió realmente con las <strong>899 imágenes de prueba</strong>
+      significa, esto es lo que ocurrió realmente con las <strong>1.363 imágenes de prueba</strong>
       que el modelo nunca vio mientras aprendía:
     </p>
     <table id="tabla-bandas">
@@ -200,13 +200,15 @@
 
   <h2>Qué es esto</h2>
   <p>
-    Una red DenseNet-121 entrenada sobre <strong>Fitzpatrick17k</strong> para distinguir
+    Una red DenseNet-121 entrenada sobre <strong>Fitzpatrick17k</strong> (atlas
+    dermatológicos) y <strong>PAD-UFES-20</strong> (fotos de móvil) para distinguir
     lesiones malignas de benignas. Todo el cálculo ocurre en tu navegador.
   </p>
   <table>
     <tr><th>Métrica</th><th class="num">Valor</th></tr>
-    <tr><td>AUROC en test (3 semillas)</td><td class="num">0,9147 ± 0,0017</td></tr>
-    <tr><td>Diferencia entre tonos de piel</td><td class="num">0,079 ± 0,019</td></tr>
+    <tr><td>AUROC en test</td><td class="num">0,905</td></tr>
+    <tr><td>Melanomas detectados</td><td class="num">90,6%</td></tr>
+    <tr><td>Resolución de entrada</td><td class="num">320 px</td></tr>
     <tr><td>Peso del modelo</td><td class="num">7,5 MB</td></tr>
   </table>
 
@@ -228,23 +230,22 @@
   <details>
     <summary>Qué se le escapa (y por qué puede no detectar algo evidente)</summary>
     <p>
-      Sobre las 430 lesiones malignas de su conjunto de prueba, el modelo no detecta el
-      9,3%. Pero ese promedio esconde lo importante — <strong>falla más en lo más
-      peligroso</strong>:
+      Sobre las 679 lesiones malignas de su conjunto de prueba, el modelo no detecta el
+      9,0%. Una versión anterior fallaba el doble en melanoma que en el resto; entrenar a
+      mayor resolución y con dos fuentes distintas cerró casi por completo esa diferencia:
     </p>
     <table>
-      <thead><tr><th>Tipo</th><th class="num">Casos</th><th class="num">No detectadas</th></tr></thead>
+      <thead><tr><th>Grupo</th><th class="num">Casos malignos</th><th class="num">No detectados</th></tr></thead>
       <tbody>
-        <tr><td><strong>Melanoma</strong></td><td class="num">116</td><td class="num"><strong>16%</strong></td></tr>
-        <tr><td>Carcinoma dermal</td><td class="num">29</td><td class="num">10%</td></tr>
-        <tr><td>Carcinoma epidérmico</td><td class="num">254</td><td class="num">7%</td></tr>
-        <tr><td>Linfoma cutáneo</td><td class="num">31</td><td class="num">6%</td></tr>
+        <tr><td><strong>Melanoma</strong></td><td class="num">117</td><td class="num"><strong>9,4%</strong></td></tr>
+        <tr><td>Resto de malignas</td><td class="num">562</td><td class="num">8,3%</td></tr>
+        <tr><td>Imágenes de atlas</td><td class="num">454</td><td class="num">10,1%</td></tr>
+        <tr><td>Fotos de móvil</td><td class="num">225</td><td class="num">6,7%</td></tr>
       </tbody>
     </table>
     <p>
-      El melanoma es visualmente muy variable —puede ser plano, poco pigmentado o
-      pequeño—, mientras que un basocelular tiene una presentación más constante. El
-      modelo aprendió mejor lo repetitivo.
+      Aun así sigue habiendo un 9% de casos que se escapan, y no hay nada que garantice
+      que el tuyo no sea uno de ellos.
     </p>
     <p>
       Si además pruebas con imágenes de internet, hay dos motivos más para que no detecte
@@ -267,7 +268,7 @@
   <details>
     <summary>Limitaciones, sin adornos</summary>
     <ul>
-      <li>Entrenado con <strong>imágenes de atlas dermatológicos</strong>, no con fotos de móvil: tu foto está fuera de su distribución.</li>
+      <li>Entrenado con atlas dermatológicos <em>y</em> fotos de móvil, pero clínicas: una foto casera con mala luz o encuadre sigue estando fuera de su terreno.</li>
       <li>Las etiquetas son diagnósticos clínicos, <strong>no confirmados por biopsia</strong>.</li>
       <li>El modelo <strong>sobreajusta</strong>: memoriza más de lo deseable pese a la regularización.</li>
       <li>Solo distingue maligno de benigno entre lesiones neoplásicas. No reconoce eczema, psoriasis ni infecciones, y ante ellas dará una respuesta sin sentido.</li>
@@ -283,17 +284,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
 <script>
-const TAM = 224, MEDIA = [0.485, 0.456, 0.406], DESV = [0.229, 0.224, 0.225];
+let TAM = 224;
+const MEDIA = [0.485, 0.456, 0.406], DESV = [0.229, 0.224, 0.225];
 
 // Bandas empíricas medidas sobre las 899 imágenes del conjunto de prueba. No son
 // categorías de riesgo clínico: son lo que ocurrió de hecho con las imágenes que
 // el modelo puntuó en cada rango.
 const BANDAS = [
-  { min:0,    max:0.05, n:344, pct:9,  titulo:'Señal muy baja' },
-  { min:0.05, max:0.15, n:61,  pct:23, titulo:'Señal baja' },
-  { min:0.15, max:0.35, n:50,  pct:42, titulo:'Señal intermedia' },
-  { min:0.35, max:0.65, n:45,  pct:47, titulo:'Señal alta' },
-  { min:0.65, max:1.01, n:399, pct:86, titulo:'Señal muy alta' },
+  { min:0,    max:0.05, n:499, pct:9,  titulo:'Señal muy baja' },
+  { min:0.05, max:0.15, n:81,  pct:25, titulo:'Señal baja' },
+  { min:0.15, max:0.35, n:64,  pct:45, titulo:'Señal intermedia' },
+  { min:0.35, max:0.65, n:79,  pct:46, titulo:'Señal alta' },
+  { min:0.65, max:1.01, n:640, pct:85, titulo:'Señal muy alta' },
 ];
 
 let sesion = null, meta = null, imagenActual = null, ultimaProb = null, ultimoCam = null;
@@ -320,6 +322,10 @@ async function arrancar() {
   pintarTabla(-1);
   try {
     meta = await (await fetch('modelo.json')).json();
+    TAM = meta.img_size || 224;
+    for (const id of ['lienzo-entrada', 'lienzo-cam']) {
+      $(id).width = TAM; $(id).height = TAM;
+    }
     const porDefecto = Math.round(meta.prevalencia_entrenamiento * 100);
     $('prevalencia').value = porDefecto;
     $('valor-prev').textContent = porDefecto + '%';

@@ -589,3 +589,78 @@ se construyó a partir de atlas públicos, así que algunas imágenes que se enc
 buscadores pueden estar en el conjunto de entrenamiento, y el modelo las «acertaría» por
 memoria. Además, muchas fotos de internet son dermatoscópicas o ilustraciones, un tipo de
 imagen que el modelo nunca vio.
+
+---
+
+# Mejora dirigida al melanoma: lo que funcionó y lo que no
+
+Dos fotos reales que el modelo no detectaba dieron el diagnóstico. Una de ellas
+tenía la lesión ocupando el **3% del encuadre**: el recorte central reescalado a
+224 px la reducía a unos pocos píxeles.
+
+Se probaron tres cambios a la vez, midiendo cada uno por separado.
+
+## Lo que funcionó: 320 px y dos fuentes de datos
+
+| | Modelo anterior | Modelo nuevo |
+|---|---|---|
+| Entrada | 224 px | **320 px** |
+| Datos | Fitzpatrick17k | **Fitzpatrick17k + PAD-UFES-20** |
+| **Melanomas detectados** | **84%** | **90,6%** |
+| AUROC en test | 0,915 | 0,905 |
+| Atlas / fotos de móvil | 0,899 / **0,684** | **0,910 / 0,896** |
+
+Los melanomas que se escapan bajan de **1 de cada 6 a 1 de cada 11**. Y la
+diferencia entre los tipos de lesión casi desaparece: antes fallaba el doble en
+melanoma (16%) que en carcinomas (7%); ahora 9,4% frente a 8,3%.
+
+**Y se cierra el problema de generalización que arrastraba el proyecto.** El
+modelo anterior se desplomaba al cambiar de dominio (0,899 dentro, 0,684 fuera);
+el nuevo rinde igual en ambos (0,910 y 0,896). Entrenar con dos fuentes distintas
+lo resolvió — no hizo falta ninguna técnica sofisticada de adaptación de dominio.
+
+El AUROC global baja levemente (0,915 → 0,905), pero no son comparables: el test
+nuevo mezcla dos dominios y es más difícil. La cifra que importa, los melanomas
+detectados, sube.
+
+**Las dos fotos que fallaban, con el modelo nuevo y recorte central normal:**
+
+| | Antes | Ahora |
+|---|---|---|
+| Lesión grande | 0,115 (no detecta) | **0,934** |
+| Lesión pequeña | 0,054 (no detecta) | **0,878** |
+
+## Lo que no funcionó: la inferencia por multi-recorte
+
+Parecía la solución evidente: recorrer la imagen por trozos y quedarse con el
+máximo. Y sobre las dos fotos problemáticas *funcionaba* (0,054 → 0,277).
+
+Medido en condiciones, es **estrictamente peor**. A igualdad de casos detectados:
+
+| Sensibilidad objetivo | Especificidad con recorte central | Con multi-recorte |
+|---|---|---|
+| 0,90 | **0,753** | 0,588 |
+| 0,92 | **0,684** | 0,556 |
+| 0,95 | **0,601** | 0,475 |
+| 0,98 | **0,421** | 0,326 |
+
+Y el AUROC cae de 0,905 a 0,861. **No aportaba información: subía todas las
+puntuaciones.** El mismo efecto se consigue bajando el umbral, y con muchas menos
+falsas alarmas. Tomar el máximo sobre 38 recortes hace que ese máximo lo acabe
+fijando cualquier trozo de piel sana con textura rara.
+
+**El matiz honesto**: el conjunto de test son fotos clínicas bien encuadradas, así
+que **no contiene el fallo que el multi-recorte corregía**. La medición dice que
+perjudica en imágenes bien hechas; no dice que no ayude en una foto casera con la
+lesión diminuta en una esquina. Para ese caso la solución razonable es dejar que
+la persona recorte la imagen, no procesar 38 ventanas siempre.
+
+## La lección
+
+Una intervención puede arreglar los casos que la motivaron **y aun así empeorar el
+sistema**. Solo se distingue midiendo en un punto de operación comparable: si
+hubiera comparado con el mismo umbral, el multi-recorte habría parecido una mejora
+clara, porque sube todas las puntuaciones.
+
+Es el mismo patrón que apareció con la calibración por tono de piel: la corrección
+intuitiva, aplicada sin comprobar, empeoraba lo que pretendía arreglar.

@@ -1,0 +1,40 @@
+{
+  "objetivo": "reducir los melanomas no detectados (antes: 1 de cada 6)",
+  "cambios": [
+    "320 px",
+    "Fitzpatrick17k + PAD-UFES-20",
+    "inferencia multi-recorte"
+  ],
+  "metrica_que_decide": "sensibilidad en melanoma, no AUROC",
+  "umbral_derivado_en": "validacion, fijando sensibilidad 0.90",
+  "resultados": {
+    "centro": {
+      "umbral": 0.1122,
+      "auroc": 0.9054,
+      "sensibilidad_global": 0.9102,
+      "especificidad": 0.7222,
+      "melanomas_n": 117,
+      "sensibilidad_melanoma": 0.906,
+      "sensibilidad_otras_malignas": 0.8961,
+      "por_dominio": {
+        "fitzpatrick17k": 0.9104,
+        "pad_ufes_20": 0.8957
+      }
+    },
+    "multi": {
+      "umbral": 0.7125,
+      "auroc": 0.8608,
+      "sensibilidad_global": 0.919,
+      "especificidad": 0.557,
+      "melanomas_n": 117,
+      "sensibilidad_melanoma": 0.9316,
+      "sensibilidad_otras_malignas": 0.9169,
+      "por_dominio": {
+        "fitzpatrick17k": 0.8522,
+        "pad_ufes_20": 0.8804
+      }
+    }
+  },
+  "mejor": "multi",
+  "minutos": 25.4
+}

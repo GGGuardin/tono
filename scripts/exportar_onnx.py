@@ -108,9 +108,10 @@ def main() -> None:
     import onnxruntime as ort
 
     sesion = ort.InferenceSession(str(salida), providers=["CPUExecutionProvider"])
+    lado = ckpt["config"].get("img_size", 224)   # estaba cableado a 224 y rompia a 320
     diferencias = []
     for _ in range(8):
-        x = torch.randn(1, 3, 224, 224)
+        x = torch.randn(1, 3, lado, lado)
         with torch.no_grad():
             p_torch = float(envoltorio(x)[0].item())
         p_onnx = float(sesion.run(None, {"imagen": x.numpy()})[0].ravel()[0])

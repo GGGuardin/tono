@@ -1,9 +1,9 @@
 {
   "arch": "densenet121",
-  "img_size": 224,
-  "umbral": 0.1357,
-  "prevalencia_entrenamiento": 0.5233,
-  "auroc_val": 0.9009,
+  "img_size": 320,
+  "umbral": 0.1122,
+  "prevalencia_entrenamiento": 0.4947,
+  "auroc_val": 0.8969,
   "media": [
     0.485,
     0.456,
@@ -14,5 +14,6 @@
     0.224,
     0.225
   ],
-  "diferencia_max_vs_pytorch": 4e-05
+  "diferencia_max_vs_pytorch": 0.00212,
+  "umbral_nota": "derivado en validacion fijando sensibilidad 0,90 (cribado)"
 }
