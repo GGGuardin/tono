@@ -1,0 +1,28 @@
+# Fitzpatrick17k — maligno vs benigno, subconjunto neoplásico (~4.500 imágenes)
+#
+# Misma arquitectura que el modelo de PAD-UFES a propósito: la comparación entre
+# ambos es el experimento, y cambiar el backbone al mismo tiempo mezclaría dos
+# efectos distintos.
+manifest: manifiesto_fitz.csv
+out_dir: runs/fitz_densenet121
+
+seed: 42
+arch: densenet121
+pretrained: true
+dropout: 0.3
+freeze_backbone: false
+
+img_size: 224
+batch_size: 32
+num_workers: 2
+use_clahe: false
+allow_hflip: true
+
+epochs: 20
+lr: 1.0e-4
+weight_decay: 1.0e-4
+early_stopping_patience: 5
+
+# Clases casi equilibradas (50,3% malignas), así que pos_weight apenas corrige.
+use_pos_weight: true
+balance_train: false
