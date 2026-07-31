@@ -175,7 +175,7 @@
     <details>
       <summary>Ajuste avanzado: prevalencia (no hace falta tocarlo)</summary>
       <div class="control">
-        <p class="recomendado">Recomendado: déjalo en 52%, el valor con el que se entrenó.</p>
+        <p class="recomendado" id="recomendado">Recomendado: déjalo como está.</p>
         <label for="prevalencia">
           Prevalencia asumida en la población: <span class="valor" id="valor-prev">52%</span>
         </label>
@@ -289,8 +289,11 @@ async function arrancar() {
   pintarTabla(-1);
   try {
     meta = await (await fetch('modelo.json')).json();
-    $('prevalencia').value = Math.round(meta.prevalencia_entrenamiento * 100);
-    $('valor-prev').textContent = $('prevalencia').value + '%';
+    const porDefecto = Math.round(meta.prevalencia_entrenamiento * 100);
+    $('prevalencia').value = porDefecto;
+    $('valor-prev').textContent = porDefecto + '%';
+    $('recomendado').textContent =
+      'Recomendado: dejalo en ' + porDefecto + '%, el valor con el que se entreno.';
     sesion = await ort.InferenceSession.create('modelo.onnx', { executionProviders: ['wasm'] });
     estado('Modelo listo. Nada de lo que subas sale de este dispositivo.');
   } catch (e) {
@@ -355,7 +358,9 @@ function corregirPrevalencia(p, origen, destino) {
 function mostrar() {
   if (ultimaProb === null) return;
   const destino = Math.min(0.99, Math.max(0.01, +$('prevalencia').value / 100));
-  const ajustada = Math.abs(destino - meta.prevalencia_entrenamiento) > 1e-4;
+  // El deslizador va en enteros y la prevalencia real es 0,5233: comparar los
+  // decimales daria siempre "ajustada". Se compara contra el valor por defecto.
+  const ajustada = +$('prevalencia').value !== Math.round(meta.prevalencia_entrenamiento * 100);
   const p = ajustada ? corregirPrevalencia(ultimaProb, meta.prevalencia_entrenamiento, destino)
                      : ultimaProb;
 
