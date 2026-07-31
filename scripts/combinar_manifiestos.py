@@ -18,9 +18,12 @@ from __future__ import annotations
 
 import argparse
 import logging
+import sys
 from pathlib import Path
 
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 log = logging.getLogger("tono.combinar")
 
@@ -69,7 +72,7 @@ def main() -> None:
                 "fitzpatrick"]
     unido = pd.concat([p[columnas] for p in partes], ignore_index=True)
 
-    from .split import make_splits, split_summary
+    from datos.split import make_splits, split_summary
 
     unido = make_splits(unido, val_size=args.val_size, test_size=args.test_size, seed=args.seed)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)

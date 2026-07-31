@@ -34,7 +34,9 @@ import numpy as np
 import pandas as pd
 
 RAIZ = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(RAIZ.parent))          # para importar src del proyecto de tórax
+sys.path.insert(0, str(RAIZ))
+from scripts._rutas import anadir_al_path  # noqa: E402
+anadir_al_path()
 
 from src.metrics import binary_metrics, youden_threshold  # noqa: E402
 

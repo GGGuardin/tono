@@ -29,7 +29,9 @@ import pandas as pd
 import torch
 
 RAIZ = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(RAIZ.parent))
+sys.path.insert(0, str(RAIZ))
+from scripts._rutas import anadir_al_path  # noqa: E402
+anadir_al_path()
 
 from src.data import build_transforms, load_image  # noqa: E402
 from src.model import load_checkpoint  # noqa: E402
