@@ -127,8 +127,9 @@
     clínicamente y no debe usarse para ninguna decisión de salud.
     <strong style="margin-top:.6rem">Una puntuación baja no descarta nada.</strong>
     De las imágenes que este modelo puntuó en su rango más bajo, <strong>9 de cada 100
-    eran malignas de todos modos</strong>. Si te preocupa una lesión, la respuesta la tiene
-    un dermatólogo.
+    eran malignas de todos modos</strong>. Y falla más justo en lo más grave:
+    <strong>se le escapa 1 de cada 6 melanomas</strong>. Si te preocupa una lesión, la
+    respuesta la tiene un dermatólogo.
   </div>
 
   <label class="zona" id="zona" tabindex="0">
@@ -221,6 +222,36 @@
       <strong>era un artefacto del sobreajuste</strong>. Regularizar el modelo la redujo a la
       mitad, mientras que calibrar el umbral por grupo —la corrección «obvia»— la
       <em>empeoraba</em>.
+    </p>
+  </details>
+
+  <details>
+    <summary>Qué se le escapa (y por qué puede no detectar algo evidente)</summary>
+    <p>
+      Sobre las 430 lesiones malignas de su conjunto de prueba, el modelo no detecta el
+      9,3%. Pero ese promedio esconde lo importante — <strong>falla más en lo más
+      peligroso</strong>:
+    </p>
+    <table>
+      <thead><tr><th>Tipo</th><th class="num">Casos</th><th class="num">No detectadas</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Melanoma</strong></td><td class="num">116</td><td class="num"><strong>16%</strong></td></tr>
+        <tr><td>Carcinoma dermal</td><td class="num">29</td><td class="num">10%</td></tr>
+        <tr><td>Carcinoma epidérmico</td><td class="num">254</td><td class="num">7%</td></tr>
+        <tr><td>Linfoma cutáneo</td><td class="num">31</td><td class="num">6%</td></tr>
+      </tbody>
+    </table>
+    <p>
+      El melanoma es visualmente muy variable —puede ser plano, poco pigmentado o
+      pequeño—, mientras que un basocelular tiene una presentación más constante. El
+      modelo aprendió mejor lo repetitivo.
+    </p>
+    <p>
+      Si además pruebas con imágenes de internet, hay dos motivos más para que no detecte
+      algo evidente: muchas son <strong>dermatoscópicas</strong> (con lente de aumento) o
+      ilustraciones, y el modelo solo vio fotografías clínicas; y solo distingue maligno de
+      benigno <strong>entre lesiones neoplásicas</strong>, así que ante un eczema, una
+      verruga o una infección devuelve un número sin sentido.
     </p>
   </details>
 

@@ -557,3 +557,35 @@ midió con tres semillas en lugar de una.
 - Umbral único, calibrado en validación
 - Pendiente: confirmar con **DDI** (biopsia como verdad) cuando el portal de
   Stanford vuelva, y atacar el sobreajuste residual
+
+---
+
+## Qué se le escapa al modelo: falla más en lo más grave
+
+Sobre las 430 lesiones malignas del conjunto de prueba, el modelo no detecta el **9,3%**
+a su umbral de operación. Ese promedio esconde lo que importa:
+
+| Categoría | Casos | No detectadas |
+|---|---|---|
+| **Melanoma** | 116 | **16%** |
+| Carcinoma dermal | 29 | 10% |
+| Carcinoma epidérmico (basocelular, espinocelular) | 254 | 7% |
+| Linfoma cutáneo | 31 | 6% |
+
+Y bajando al diagnóstico fino, el subtipo etiquetado simplemente como «melanoma» se
+escapa en el **23%** de los casos: casi uno de cada cuatro.
+
+**El modelo es peor precisamente en la lesión más letal.** La explicación plausible es la
+variabilidad visual: un melanoma puede ser plano, poco pigmentado o pequeño, mientras que
+un carcinoma basocelular tiene una presentación mucho más constante. El modelo aprendió
+mejor lo repetitivo, y lo repetitivo no es lo más peligroso.
+
+Es una advertencia que un AUROC de 0,915 no transmite en absoluto, y por eso está ahora
+en la propia aplicación además de aquí. Un número global bueno puede convivir con un fallo
+concentrado justo donde más daño hace.
+
+**Nota sobre probar con imágenes de internet:** no es una evaluación válida. Fitzpatrick17k
+se construyó a partir de atlas públicos, así que algunas imágenes que se encuentren en
+buscadores pueden estar en el conjunto de entrenamiento, y el modelo las «acertaría» por
+memoria. Además, muchas fotos de internet son dermatoscópicas o ilustraciones, un tipo de
+imagen que el modelo nunca vio.
