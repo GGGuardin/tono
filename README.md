@@ -7,6 +7,19 @@
 Proyecto **Tono**. Resultados de todas las fases en
 [`RESULTADOS.md`](RESULTADOS.md).
 
+## 🔗 Pruébalo: **https://ggguardin.github.io/tono/**
+
+Abre el enlace en el móvil, elige una foto y obtén la predicción con su mapa de
+calor. **La imagen nunca sale de tu dispositivo**: el modelo se descarga una vez
+(7,5 MB, cuantizado a int8) y todo el cálculo ocurre en el navegador con ONNX
+Runtime Web. No hay servidor al que enviarla, así que la privacidad no es una
+promesa que haya que creerse sino una propiedad de la arquitectura — y el
+alojamiento cuesta cero.
+
+Modelo: DenseNet-121 entrenada en Fitzpatrick17k, **AUROC 0,9147 ± 0,0017** en
+tres semillas, con una brecha entre tonos de piel de 0,079 ± 0,019 y sin
+desventaja consistente para la piel oscura.
+
 Decide si una foto tomada con la cámara de un móvil sirve para analizarse y,
 cuando no sirve, **dice qué hacer para arreglarla**. Es independiente del modelo y
 del dominio: vale igual para piel, ojo externo o boca.
