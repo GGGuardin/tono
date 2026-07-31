@@ -5,3 +5,7 @@ fotos/
 *.csv
 *.json
 !package.json
+# Los artefactos publicados sí se versionan: sin ellos la web no arranca
+!docs/*.json
+!results/**/*.json
+!results/**/*.csv

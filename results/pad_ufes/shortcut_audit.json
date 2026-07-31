@@ -1,0 +1,1220 @@
+{
+  "n_imagenes": 200,
+  "baseline_uniforme": 0.51,
+  "umbral_operativo": 0.236,
+  "marco_evaluado": "15% exterior (~51% del área total)",
+  "detecciones_positivas": {
+    "n": 106,
+    "energia_bordes_media": 0.1404,
+    "veredicto": "atención centrada en el pulmón"
+  },
+  "resto_de_casos": {
+    "n": 29,
+    "energia_bordes_media": 0.4745,
+    "nota": "mapa sin señal; energía alta esperada, no indica atajo"
+  },
+  "mapas_nulos": 65,
+  "energia_bordes_media_global": 0.2121,
+  "detalle": [
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_950_1804_64.png",
+      "label": 1,
+      "prob": 0.648969292640686,
+      "border_energy": 0.06402629613876343
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_989_1861_156.png",
+      "label": 1,
+      "prob": 0.5120177865028381,
+      "border_energy": 0.19860440492630005
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_98_152_562.png",
+      "label": 1,
+      "prob": 0.8827757239341736,
+      "border_energy": 0.24312859773635864
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_827_1599_248.png",
+      "label": 1,
+      "prob": 0.9603081941604614,
+      "border_energy": 0.06905871629714966
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_183_283_495.png",
+      "label": 1,
+      "prob": 0.5051229596138,
+      "border_energy": 0.02389061450958252
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_527_1360_225.png",
+      "label": 1,
+      "prob": 0.3232671618461609,
+      "border_energy": 0.15379852056503296
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_837_1584_745.png",
+      "label": 1,
+      "prob": 0.6456999182701111,
+      "border_energy": 0.12180441617965698
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_38_54_234.png",
+      "label": 1,
+      "prob": 0.6885815262794495,
+      "border_energy": 0.13396692276000977
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_953_1806_326.png",
+      "label": 1,
+      "prob": 0.9405238032341003,
+      "border_energy": 0.051451146602630615
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_591_1126_21.png",
+      "label": 1,
+      "prob": 0.7301138043403625,
+      "border_energy": 0.22616523504257202
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_734_1390_631.png",
+      "label": 1,
+      "prob": 0.5671867728233337,
+      "border_energy": 0.11912524700164795
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_282_433_934.png",
+      "label": 1,
+      "prob": 0.945719301700592,
+      "border_energy": 0.2636343240737915
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_867_1650_901.png",
+      "label": 1,
+      "prob": 0.9322289228439331,
+      "border_energy": 0.029897749423980713
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_161_250_197.png",
+      "label": 1,
+      "prob": 0.9479904174804688,
+      "border_energy": 0.199834406375885
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_386_1554_362.png",
+      "label": 1,
+      "prob": 0.8269822001457214,
+      "border_energy": 0.2576773166656494
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_827_1598_85.png",
+      "label": 1,
+      "prob": 0.5477041602134705,
+      "border_energy": 0.23165923357009888
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_796_1510_361.png",
+      "label": 1,
+      "prob": 0.8467269539833069,
+      "border_energy": 0.17434263229370117
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_196_300_749.png",
+      "label": 1,
+      "prob": 0.9793508052825928,
+      "border_energy": 0.23046118021011353
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_720_1362_700.png",
+      "label": 1,
+      "prob": 0.1031145304441452,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_386_1554_280.png",
+      "label": 1,
+      "prob": 0.8333561420440674,
+      "border_energy": 0.3660844564437866
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_858_1631_427.png",
+      "label": 1,
+      "prob": 0.7517973184585571,
+      "border_energy": 0.17459994554519653
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_629_1192_362.png",
+      "label": 1,
+      "prob": 0.6039738059043884,
+      "border_energy": 0.05078244209289551
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_406_808_560.png",
+      "label": 1,
+      "prob": 0.4820440709590912,
+      "border_energy": 0.039167582988739014
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_248_379_695.png",
+      "label": 1,
+      "prob": 0.8303523659706116,
+      "border_energy": 0.10176312923431396
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_488_931_321.png",
+      "label": 1,
+      "prob": 0.7164227962493896,
+      "border_energy": 0.19238412380218506
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_657_1247_455.png",
+      "label": 1,
+      "prob": 0.8713764548301697,
+      "border_energy": 0.22973519563674927
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_744_1405_742.png",
+      "label": 1,
+      "prob": 0.05305161699652672,
+      "border_energy": 0.0
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_183_283_602.png",
+      "label": 1,
+      "prob": 0.1762467920780182,
+      "border_energy": 0.9270181059837341
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_330_695_296.png",
+      "label": 1,
+      "prob": 0.6167557239532471,
+      "border_energy": 0.3084598779678345
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_923_1753_706.png",
+      "label": 1,
+      "prob": 0.8640287518501282,
+      "border_energy": 0.26751238107681274
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_524_987_738.png",
+      "label": 1,
+      "prob": 0.9308999180793762,
+      "border_energy": 0.12456303834915161
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_358_738_837.png",
+      "label": 1,
+      "prob": 0.8388643264770508,
+      "border_energy": 0.13989055156707764
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_53_1144_892.png",
+      "label": 1,
+      "prob": 0.8888022303581238,
+      "border_energy": 0.08478140830993652
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_879_1676_668.png",
+      "label": 1,
+      "prob": 0.8232293128967285,
+      "border_energy": 0.04118150472640991
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_564_1079_31.png",
+      "label": 1,
+      "prob": 0.9991174340248108,
+      "border_energy": 0.1265748143196106
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_67_104_695.png",
+      "label": 1,
+      "prob": 0.9866856336593628,
+      "border_energy": 0.10002201795578003
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_392_792_712.png",
+      "label": 1,
+      "prob": 0.8604593873023987,
+      "border_energy": 0.1925073266029358
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_82_125_525.png",
+      "label": 1,
+      "prob": 0.9434698224067688,
+      "border_energy": 0.28253304958343506
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_53_82_940.png",
+      "label": 1,
+      "prob": 0.5478789210319519,
+      "border_energy": 0.061117708683013916
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_477_915_389.png",
+      "label": 1,
+      "prob": 0.5878867506980896,
+      "border_energy": 0.2218339443206787
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_46_881_14.png",
+      "label": 1,
+      "prob": 0.9251160025596619,
+      "border_energy": 0.13918256759643555
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_852_1629_265.png",
+      "label": 1,
+      "prob": 0.11247479915618896,
+      "border_energy": 0.08851802349090576
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_53_82_657.png",
+      "label": 1,
+      "prob": 0.4597141444683075,
+      "border_energy": 0.04672420024871826
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_46_879_386.png",
+      "label": 1,
+      "prob": 0.9279624819755554,
+      "border_energy": 0.05104684829711914
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_43_1017_483.png",
+      "label": 1,
+      "prob": 0.6972841024398804,
+      "border_energy": 0.08290976285934448
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_46_880_308.png",
+      "label": 1,
+      "prob": 0.7086607813835144,
+      "border_energy": 0.16920506954193115
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_89_135_11.png",
+      "label": 1,
+      "prob": 0.9829771518707275,
+      "border_energy": 0.17666125297546387
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_981_1848_486.png",
+      "label": 1,
+      "prob": 0.17741136252880096,
+      "border_energy": 0.18444347381591797
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_441_861_415.png",
+      "label": 1,
+      "prob": 0.010128097608685493,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_766_1444_52.png",
+      "label": 1,
+      "prob": 0.49390318989753723,
+      "border_energy": 0.1487618088722229
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_713_1336_159.png",
+      "label": 1,
+      "prob": 0.08278727531433105,
+      "border_energy": 0.08212745189666748
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_316_674_924.png",
+      "label": 1,
+      "prob": 0.8721755743026733,
+      "border_energy": 0.16477733850479126
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_229_349_256.png",
+      "label": 1,
+      "prob": 0.832878828048706,
+      "border_energy": 0.16252487897872925
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_796_1509_459.png",
+      "label": 1,
+      "prob": 0.8534286618232727,
+      "border_energy": 0.05310148000717163
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_550_1045_81.png",
+      "label": 1,
+      "prob": 0.04316679388284683,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_275_424_966.png",
+      "label": 1,
+      "prob": 0.40393224358558655,
+      "border_energy": 0.030042946338653564
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_200_304_139.png",
+      "label": 1,
+      "prob": 0.09613718837499619,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_386_784_470.png",
+      "label": 1,
+      "prob": 0.7347127199172974,
+      "border_energy": 0.17983531951904297
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_46_881_939.png",
+      "label": 1,
+      "prob": 0.7970804572105408,
+      "border_energy": 0.19811052083969116
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_373_761_708.png",
+      "label": 1,
+      "prob": 0.9548090696334839,
+      "border_energy": 0.09942489862442017
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_386_1554_455.png",
+      "label": 1,
+      "prob": 0.8324406147003174,
+      "border_energy": 0.32762300968170166
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_118_180_500.png",
+      "label": 1,
+      "prob": 0.9290683269500732,
+      "border_energy": 0.0949748158454895
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_82_125_907.png",
+      "label": 1,
+      "prob": 0.22355328500270844,
+      "border_energy": 0.6250824928283691
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_35_48_43.png",
+      "label": 1,
+      "prob": 0.9724758863449097,
+      "border_energy": 0.13109064102172852
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_478_1829_281.png",
+      "label": 1,
+      "prob": 0.36559388041496277,
+      "border_energy": 0.14488887786865234
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_705_1326_82.png",
+      "label": 1,
+      "prob": 0.15153029561042786,
+      "border_energy": 0.007611453533172607
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_412_817_232.png",
+      "label": 1,
+      "prob": 0.3041025400161743,
+      "border_energy": 0.04783201217651367
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_380_773_542.png",
+      "label": 1,
+      "prob": 0.6924066543579102,
+      "border_energy": 0.0942811369895935
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_526_991_109.png",
+      "label": 1,
+      "prob": 0.9826768040657043,
+      "border_energy": 0.1353803277015686
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_844_1605_308.png",
+      "label": 1,
+      "prob": 0.36471086740493774,
+      "border_energy": 0.24784016609191895
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_290_445_686.png",
+      "label": 1,
+      "prob": 0.9464479088783264,
+      "border_energy": 0.13951188325881958
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_171_265_757.png",
+      "label": 1,
+      "prob": 0.960629940032959,
+      "border_energy": 0.19242852926254272
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_30_41_815.png",
+      "label": 1,
+      "prob": 0.16225022077560425,
+      "border_energy": 0.04052841663360596
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_259_399_801.png",
+      "label": 1,
+      "prob": 0.15176205337047577,
+      "border_energy": 0.8352409601211548
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_330_1437_506.png",
+      "label": 1,
+      "prob": 0.9768763184547424,
+      "border_energy": 0.08130162954330444
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_966_1825_546.png",
+      "label": 1,
+      "prob": 0.09922909736633301,
+      "border_energy": 0.7362598180770874
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_478_916_806.png",
+      "label": 1,
+      "prob": 0.6949528455734253,
+      "border_energy": 0.08569055795669556
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_668_1259_681.png",
+      "label": 1,
+      "prob": 0.9188618659973145,
+      "border_energy": 0.043007493019104004
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_334_703_907.png",
+      "label": 1,
+      "prob": 0.9526927471160889,
+      "border_energy": 0.11002707481384277
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_953_1806_845.png",
+      "label": 1,
+      "prob": 0.3805158734321594,
+      "border_energy": 0.000821530818939209
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_837_1582_714.png",
+      "label": 1,
+      "prob": 0.6310530304908752,
+      "border_energy": 0.0756082534790039
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_395_795_43.png",
+      "label": 1,
+      "prob": 0.41115662455558777,
+      "border_energy": 0.04864126443862915
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_330_1437_458.png",
+      "label": 1,
+      "prob": 0.9939032196998596,
+      "border_energy": 0.12421095371246338
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_75_113_647.png",
+      "label": 1,
+      "prob": 0.8852855563163757,
+      "border_energy": 0.14036297798156738
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_406_1542_754.png",
+      "label": 1,
+      "prob": 0.010894400998950005,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_583_1112_886.png",
+      "label": 1,
+      "prob": 0.5379071235656738,
+      "border_energy": 0.04663419723510742
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_257_395_866.png",
+      "label": 1,
+      "prob": 0.8728074431419373,
+      "border_energy": 0.11018639802932739
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_633_1199_218.png",
+      "label": 1,
+      "prob": 0.9761565327644348,
+      "border_energy": 0.20385771989822388
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_53_1370_245.png",
+      "label": 1,
+      "prob": 0.8228562474250793,
+      "border_energy": 0.02263486385345459
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_564_1079_430.png",
+      "label": 1,
+      "prob": 0.9729295372962952,
+      "border_energy": 0.09903985261917114
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_101_1041_898.png",
+      "label": 1,
+      "prob": 0.9932478666305542,
+      "border_energy": 0.12015318870544434
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_406_1542_301.png",
+      "label": 1,
+      "prob": 0.6810482740402222,
+      "border_energy": 0.06483572721481323
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_330_695_90.png",
+      "label": 1,
+      "prob": 0.76511549949646,
+      "border_energy": 0.10099852085113525
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_826_1615_908.png",
+      "label": 1,
+      "prob": 0.4653754234313965,
+      "border_energy": 0.08239811658859253
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_53_81_194.png",
+      "label": 1,
+      "prob": 0.02455476112663746,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_461_895_72.png",
+      "label": 1,
+      "prob": 0.9117610454559326,
+      "border_energy": 0.20418143272399902
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_43_61_210.png",
+      "label": 1,
+      "prob": 0.7849516272544861,
+      "border_energy": 0.21132206916809082
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_633_1199_745.png",
+      "label": 1,
+      "prob": 0.016552485525608063,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_312_668_480.png",
+      "label": 1,
+      "prob": 0.8107650279998779,
+      "border_energy": 0.2798579931259155
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_561_1068_909.png",
+      "label": 1,
+      "prob": 0.7958837151527405,
+      "border_energy": 0.29371529817581177
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_38_1003_226.png",
+      "label": 0,
+      "prob": 0.6286030411720276,
+      "border_energy": 0.2619539499282837
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_236_1071_810.png",
+      "label": 0,
+      "prob": 0.00470387190580368,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1145_534_529.png",
+      "label": 0,
+      "prob": 0.0005683900672011077,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1275_955_131.png",
+      "label": 0,
+      "prob": 0.010902168229222298,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1241_824_82.png",
+      "label": 0,
+      "prob": 0.02200583554804325,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1633_2855_460.png",
+      "label": 0,
+      "prob": 0.004454274661839008,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1801_3461_351.png",
+      "label": 0,
+      "prob": 0.11750425398349762,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1094_381_446.png",
+      "label": 0,
+      "prob": 0.01817798614501953,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_244_374_726.png",
+      "label": 0,
+      "prob": 0.17647315561771393,
+      "border_energy": 0.044309794902801514
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1414_1433_806.png",
+      "label": 0,
+      "prob": 0.016905520111322403,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_1066_281_698.png",
+      "label": 0,
+      "prob": 0.007869227789342403,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1881_3711_217.png",
+      "label": 0,
+      "prob": 0.017077382653951645,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1304_1079_859.png",
+      "label": 0,
+      "prob": 0.014386140741407871,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1582_2574_989.png",
+      "label": 0,
+      "prob": 0.02328575775027275,
+      "border_energy": 0.9879300594329834
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1298_1051_831.png",
+      "label": 0,
+      "prob": 0.5521456599235535,
+      "border_energy": 0.040473878383636475
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2105_4587_204.png",
+      "label": 0,
+      "prob": 0.2614768445491791,
+      "border_energy": 0.02233332395553589
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1710_3160_488.png",
+      "label": 0,
+      "prob": 0.07997121661901474,
+      "border_energy": 0.9386188983917236
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_300_1689_862.png",
+      "label": 0,
+      "prob": 0.03430768847465515,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2020_4176_865.png",
+      "label": 0,
+      "prob": 0.009059744887053967,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1364_1246_420.png",
+      "label": 0,
+      "prob": 0.006144635379314423,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1364_1246_583.png",
+      "label": 0,
+      "prob": 0.009469803422689438,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_373_2598_235.png",
+      "label": 0,
+      "prob": 0.01672656275331974,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2150_4766_754.png",
+      "label": 0,
+      "prob": 0.008271687664091587,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_471_909_344.png",
+      "label": 0,
+      "prob": 0.345432311296463,
+      "border_energy": 0.42970025539398193
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1636_2869_739.png",
+      "label": 0,
+      "prob": 0.024975774809718132,
+      "border_energy": 0.3967787027359009
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2011_4141_862.png",
+      "label": 0,
+      "prob": 0.003870725631713867,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_286_1458_381.png",
+      "label": 0,
+      "prob": 0.014937645755708218,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1722_3214_672.png",
+      "label": 0,
+      "prob": 0.014062060043215752,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2157_4789_969.png",
+      "label": 0,
+      "prob": 0.0019340686267241836,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1497_1712_633.png",
+      "label": 0,
+      "prob": 0.2738276422023773,
+      "border_energy": 0.011580884456634521
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1186_680_578.png",
+      "label": 0,
+      "prob": 0.012771904468536377,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1983_4032_502.png",
+      "label": 0,
+      "prob": 0.10401398688554764,
+      "border_energy": 0.8944655060768127
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_38_1003_68.png",
+      "label": 0,
+      "prob": 0.683784008026123,
+      "border_energy": 0.30488550662994385
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1694_3110_213.png",
+      "label": 0,
+      "prob": 0.12032540887594223,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_366_2448_563.png",
+      "label": 0,
+      "prob": 0.11973440647125244,
+      "border_energy": 0.43915218114852905
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_846_1607_895.png",
+      "label": 0,
+      "prob": 0.705765426158905,
+      "border_energy": 0.05114501714706421
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1978_4004_304.png",
+      "label": 0,
+      "prob": 0.009797656908631325,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_651_1232_950.png",
+      "label": 0,
+      "prob": 0.8579739928245544,
+      "border_energy": 0.05633658170700073
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_931_1763_617.png",
+      "label": 0,
+      "prob": 0.0019410601817071438,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1783_3414_120.png",
+      "label": 0,
+      "prob": 0.011134391650557518,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2070_4430_290.png",
+      "label": 0,
+      "prob": 0.22424238920211792,
+      "border_energy": 0.32434242963790894
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1298_1050_519.png",
+      "label": 0,
+      "prob": 0.8115761280059814,
+      "border_energy": 0.09881937503814697
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1480_1673_701.png",
+      "label": 0,
+      "prob": 0.022722022607922554,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_300_648_84.png",
+      "label": 0,
+      "prob": 0.6407042741775513,
+      "border_energy": 0.026226580142974854
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1529_1798_206.png",
+      "label": 0,
+      "prob": 0.017711998894810677,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_766_1670_458.png",
+      "label": 0,
+      "prob": 0.00752602331340313,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1582_2574_34.png",
+      "label": 0,
+      "prob": 0.4159582257270813,
+      "border_energy": 0.3293188810348511
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_57_90_910.png",
+      "label": 0,
+      "prob": 0.5870727300643921,
+      "border_energy": 0.138139009475708
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1414_1429_59.png",
+      "label": 0,
+      "prob": 0.04306001961231232,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_735_1391_261.png",
+      "label": 0,
+      "prob": 0.052847687155008316,
+      "border_energy": 0.06355929374694824
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1881_3717_785.png",
+      "label": 0,
+      "prob": 0.025551028549671173,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1582_2574_890.png",
+      "label": 0,
+      "prob": 0.0369003489613533,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1881_3713_718.png",
+      "label": 0,
+      "prob": 0.01099016610532999,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1765_3337_365.png",
+      "label": 0,
+      "prob": 0.647838294506073,
+      "border_energy": 0.1327441930770874
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2050_4350_36.png",
+      "label": 0,
+      "prob": 0.008397779427468777,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1551_1889_948.png",
+      "label": 0,
+      "prob": 0.03131170570850372,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1304_1081_84.png",
+      "label": 0,
+      "prob": 0.0069962251000106335,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1452_1564_509.png",
+      "label": 0,
+      "prob": 0.01872686855494976,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_873_1661_178.png",
+      "label": 0,
+      "prob": 0.038784824311733246,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1414_1429_53.png",
+      "label": 0,
+      "prob": 0.14956985414028168,
+      "border_energy": 0.2945956587791443
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1161_578_233.png",
+      "label": 0,
+      "prob": 0.0012099469313398004,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1364_1246_447.png",
+      "label": 0,
+      "prob": 0.012300478294491768,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1332_1174_839.png",
+      "label": 0,
+      "prob": 0.026064546778798103,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_802_1516_510.png",
+      "label": 0,
+      "prob": 0.04245586693286896,
+      "border_energy": 0.14111328125
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1216_759_542.png",
+      "label": 0,
+      "prob": 0.03733981028199196,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_802_1516_910.png",
+      "label": 0,
+      "prob": 0.21149778366088867,
+      "border_energy": 0.3719640374183655
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1265_908_754.png",
+      "label": 0,
+      "prob": 0.3004603087902069,
+      "border_energy": 0.02271634340286255
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_982_1852_526.png",
+      "label": 0,
+      "prob": 0.16182133555412292,
+      "border_energy": 0.8933364748954773
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1309_1096_393.png",
+      "label": 0,
+      "prob": 0.033340927213430405,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1770_3344_274.png",
+      "label": 0,
+      "prob": 0.016551733016967773,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1653_2916_346.png",
+      "label": 0,
+      "prob": 0.0028251963667571545,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1282_978_328.png",
+      "label": 0,
+      "prob": 0.35113734006881714,
+      "border_energy": 0.02417808771133423
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_45_65_551.png",
+      "label": 0,
+      "prob": 0.8894113898277283,
+      "border_energy": 0.08574885129928589
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1364_1246_238.png",
+      "label": 0,
+      "prob": 0.02352367714047432,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_893_1697_613.png",
+      "label": 0,
+      "prob": 0.010663251392543316,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_966_1826_587.png",
+      "label": 0,
+      "prob": 0.7533817887306213,
+      "border_energy": 0.15494149923324585
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_220_1343_489.png",
+      "label": 0,
+      "prob": 0.6354026198387146,
+      "border_energy": 0.1828036904335022
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_693_1313_304.png",
+      "label": 0,
+      "prob": 0.0019970834255218506,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1585_2619_396.png",
+      "label": 0,
+      "prob": 0.0032984819263219833,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1423_1472_18.png",
+      "label": 0,
+      "prob": 0.006735865026712418,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1186_681_457.png",
+      "label": 0,
+      "prob": 0.06172141432762146,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_757_4220_942.png",
+      "label": 0,
+      "prob": 0.0080642718821764,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1746_3284_798.png",
+      "label": 0,
+      "prob": 0.0736134871840477,
+      "border_energy": 0.07459861040115356
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2068_4424_995.png",
+      "label": 0,
+      "prob": 0.44967973232269287,
+      "border_energy": 0.032806456089019775
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1414_1433_570.png",
+      "label": 0,
+      "prob": 0.4979906678199768,
+      "border_energy": 0.1737108826637268
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_471_909_353.png",
+      "label": 0,
+      "prob": 0.25310832262039185,
+      "border_energy": 0.17091625928878784
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_286_1459_926.png",
+      "label": 0,
+      "prob": 0.018371855840086937,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_498_944_488.png",
+      "label": 0,
+      "prob": 0.8367670178413391,
+      "border_energy": 0.2606546878814697
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_1/imgs_part_1/PAT_441_2868_663.png",
+      "label": 0,
+      "prob": 0.016379108652472496,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_1027_128_854.png",
+      "label": 0,
+      "prob": 0.05457688122987747,
+      "border_energy": 0.9004942178726196
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_2043_4308_681.png",
+      "label": 0,
+      "prob": 0.6729838848114014,
+      "border_energy": 0.16024839878082275
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1452_1564_377.png",
+      "label": 0,
+      "prob": 0.08148830384016037,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1903_3791_14.png",
+      "label": 0,
+      "prob": 0.05783337354660034,
+      "border_energy": 0.9594763517379761
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_621_1182_456.png",
+      "label": 0,
+      "prob": 0.21055833995342255,
+      "border_energy": 0.5963888168334961
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1414_1426_124.png",
+      "label": 0,
+      "prob": 0.039605215191841125,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1783_3413_850.png",
+      "label": 0,
+      "prob": 0.022966722026467323,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_900_1711_622.png",
+      "label": 0,
+      "prob": 0.03416229784488678,
+      "border_energy": NaN
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_2/imgs_part_2/PAT_1017_97_577.png",
+      "label": 0,
+      "prob": 0.08416388183832169,
+      "border_energy": 0.8920083045959473
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1572_2494_224.png",
+      "label": 0,
+      "prob": 0.16385236382484436,
+      "border_energy": 0.03141498565673828
+    },
+    {
+      "image_path": "/kaggle/input/datasets/mahdavi1202/skin-cancer/imgs_part_3/imgs_part_3/PAT_1549_1882_230.png",
+      "label": 0,
+      "prob": 0.016913175582885742,
+      "border_energy": 0.9879300594329834
+    }
+  ]
+}

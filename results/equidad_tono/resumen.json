@@ -1,0 +1,225 @@
+{
+  "pregunta": "funciona igual de bien en piel oscura?",
+  "nota_tono": "bandas 1-2 / 3-4 / 5-6; las dos anotaciones del dataset coinciden exacto solo 47.9%",
+  "salvedad_etiqueta": "Fitzpatrick17k son atlas dermatologicos: diagnostico clinico, no biopsia",
+  "A_pad_interno": {
+    "n": 456,
+    "prevalencia": 0.4758771929824561,
+    "threshold": 0.20197059214115143,
+    "auroc": 0.8991091915238224,
+    "auprc": 0.8692972925467748,
+    "accuracy": 0.7960526315789473,
+    "sensibilidad": 0.9262672811059908,
+    "especificidad": 0.6778242677824268,
+    "ppv": 0.7230215827338129,
+    "npv": 0.9101123595505618,
+    "f1": 0.8121212121212121,
+    "fnr": 0.07373271889400923,
+    "fpr": 0.32217573221757323,
+    "brier": 0.12523328290574154,
+    "tp": 201,
+    "fp": 77,
+    "tn": 162,
+    "fn": 16,
+    "auroc_ci95": [
+      0.8713390015225804,
+      0.925180972451009
+    ],
+    "auprc_ci95": [
+      0.8223107733499548,
+      0.9117260704029616
+    ],
+    "checkpoint": "/kaggle/working/runs/pad/best.pth",
+    "manifest": "/kaggle/working/manifiesto_pad.csv",
+    "split": "test"
+  },
+  "A_pad_en_fitz": {
+    "n": 4492,
+    "prevalencia": 0.5035618878005342,
+    "threshold": 0.20197059214115143,
+    "auroc": 0.6843823474602816,
+    "auprc": 0.694272119304421,
+    "accuracy": 0.6266696349065004,
+    "sensibilidad": 0.6998231653404067,
+    "especificidad": 0.5524663677130045,
+    "ppv": 0.6133281673769857,
+    "npv": 0.6446886446886447,
+    "f1": 0.6537270287012183,
+    "fnr": 0.30017683465959333,
+    "fpr": 0.4475336322869955,
+    "brier": 0.26470290772680355,
+    "tp": 1583,
+    "fp": 998,
+    "tn": 1232,
+    "fn": 679,
+    "auroc_ci95": [
+      0.6690309863809571,
+      0.6995805699571316
+    ],
+    "auprc_ci95": [
+      0.6728656008239289,
+      0.7143339205503252
+    ],
+    "checkpoint": "/kaggle/working/runs/pad/best.pth",
+    "manifest": "/kaggle/working/manifiesto_fitz.csv",
+    "split": "all"
+  },
+  "B_fitz_interno": {
+    "n": 899,
+    "prevalencia": 0.4783092324805339,
+    "threshold": 0.4814995527267456,
+    "auroc": 0.9161575841721624,
+    "auprc": 0.8899820490849384,
+    "accuracy": 0.8453837597330367,
+    "sensibilidad": 0.8558139534883721,
+    "especificidad": 0.835820895522388,
+    "ppv": 0.8269662921348314,
+    "npv": 0.8634361233480177,
+    "f1": 0.8411428571428572,
+    "fnr": 0.14418604651162792,
+    "fpr": 0.16417910447761197,
+    "brier": 0.12383250726529214,
+    "tp": 368,
+    "fp": 77,
+    "tn": 392,
+    "fn": 62,
+    "auroc_ci95": [
+      0.8960509737266209,
+      0.9349347831767078
+    ],
+    "auprc_ci95": [
+      0.8548201568246553,
+      0.9217211679690673
+    ],
+    "checkpoint": "/kaggle/working/runs/fitz/best.pth",
+    "manifest": "/kaggle/working/manifiesto_fitz.csv",
+    "split": "test"
+  },
+  "A_equidad": {
+    "threshold": 0.20212802,
+    "global": {
+      "n": 4492,
+      "prevalencia": 0.5035618878005342,
+      "threshold": 0.20212802,
+      "auroc": 0.6843823474602816,
+      "auprc": 0.694272119304421,
+      "accuracy": 0.6266696349065004,
+      "sensibilidad": 0.6998231653404067,
+      "especificidad": 0.5524663677130045,
+      "ppv": 0.6133281673769857,
+      "npv": 0.6446886446886447,
+      "f1": 0.6537270287012183,
+      "fnr": 0.30017683465959333,
+      "fpr": 0.4475336322869955,
+      "brier": 0.26470290773056016,
+      "tp": 1583,
+      "fp": 998,
+      "tn": 1232,
+      "fn": 679
+    },
+    "brechas": {
+      "fitzpatrick": {
+        "fnr_max": 0.3606,
+        "fnr_min": 0.1165,
+        "brecha_fnr": 0.24409999999999998,
+        "peor_subgrupo": "3-4 media"
+      },
+      "fitzpatrick_exacto": {
+        "fnr_max": 0.3787,
+        "fnr_min": 0.1165,
+        "brecha_fnr": 0.2622,
+        "peor_subgrupo": "4"
+      }
+    }
+  },
+  "B_equidad": {
+    "threshold": 0.4849441,
+    "global": {
+      "n": 899,
+      "prevalencia": 0.4783092324805339,
+      "threshold": 0.4849441,
+      "auroc": 0.9161575841721624,
+      "auprc": 0.8899820490849384,
+      "accuracy": 0.8453837597330367,
+      "sensibilidad": 0.8558139534883721,
+      "especificidad": 0.835820895522388,
+      "ppv": 0.8269662921348314,
+      "npv": 0.8634361233480177,
+      "f1": 0.8411428571428572,
+      "fnr": 0.14418604651162792,
+      "fpr": 0.16417910447761197,
+      "brier": 0.12383250748368888,
+      "tp": 368,
+      "fp": 77,
+      "tn": 392,
+      "fn": 62
+    },
+    "brechas": {
+      "fitzpatrick": {
+        "fnr_max": 0.2368,
+        "fnr_min": 0.1027,
+        "brecha_fnr": 0.1341,
+        "peor_subgrupo": "5-6 oscura"
+      },
+      "fitzpatrick_exacto": {
+        "fnr_max": 0.2593,
+        "fnr_min": 0.0727,
+        "brecha_fnr": 0.1866,
+        "peor_subgrupo": "5"
+      }
+    }
+  },
+  "A_por_banda": [
+    {
+      "subgrupo": "1-2 clara",
+      "n": 2310,
+      "auroc": 0.6924,
+      "fnr_infradiagnostico": 0.2778
+    },
+    {
+      "subgrupo": "3-4 media",
+      "n": 1597,
+      "auroc": 0.6579,
+      "fnr_infradiagnostico": 0.3606
+    },
+    {
+      "subgrupo": "5-6 oscura",
+      "n": 408,
+      "auroc": 0.6985,
+      "fnr_infradiagnostico": 0.2995
+    },
+    {
+      "subgrupo": "UNKNOWN",
+      "n": 177,
+      "auroc": 0.7676,
+      "fnr_infradiagnostico": 0.1165
+    }
+  ],
+  "B_por_banda": [
+    {
+      "subgrupo": "1-2 clara",
+      "n": 472,
+      "auroc": 0.8997,
+      "fnr_infradiagnostico": 0.1518
+    },
+    {
+      "subgrupo": "3-4 media",
+      "n": 317,
+      "auroc": 0.941,
+      "fnr_infradiagnostico": 0.1027
+    },
+    {
+      "subgrupo": "5-6 oscura",
+      "n": 69,
+      "auroc": 0.91,
+      "fnr_infradiagnostico": 0.2368
+    },
+    {
+      "subgrupo": "UNKNOWN",
+      "n": 41,
+      "auroc": 0.9234,
+      "fnr_infradiagnostico": 0.1818
+    }
+  ],
+  "minutos": 15.4
+}

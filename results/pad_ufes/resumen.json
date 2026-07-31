@@ -1,0 +1,138 @@
+{
+  "dataset": "PAD-UFES-20",
+  "tarea": "maligno (BCC/SCC/MEL) vs benigno (ACK/NEV/SEK)",
+  "test": {
+    "n": 456,
+    "prevalencia": 0.4758771929824561,
+    "threshold": 0.2359876036643982,
+    "auroc": 0.8952914409116326,
+    "auprc": 0.8650513626036772,
+    "accuracy": 0.8179824561403509,
+    "sensibilidad": 0.880184331797235,
+    "especificidad": 0.7615062761506276,
+    "ppv": 0.7701612903225806,
+    "npv": 0.875,
+    "f1": 0.8215053763440859,
+    "fnr": 0.11981566820276501,
+    "fpr": 0.2384937238493724,
+    "brier": 0.1332956627388066,
+    "tp": 191,
+    "fp": 57,
+    "tn": 182,
+    "fn": 26,
+    "auroc_ci95": [
+      0.8663722269308971,
+      0.9217902303971947
+    ],
+    "auprc_ci95": [
+      0.8132815753231665,
+      0.9119641639264854
+    ],
+    "checkpoint": "/kaggle/working/runs/pad_densenet121/best.pth",
+    "manifest": "/kaggle/working/manifiesto_pad.csv",
+    "split": "test"
+  },
+  "biopsia": {
+    "todos": {
+      "n": 456,
+      "prevalencia": 0.4759,
+      "auroc": 0.8953,
+      "auprc": 0.8651,
+      "sensibilidad": 0.8802,
+      "especificidad": 0.7615,
+      "fnr": 0.1198,
+      "auroc_ci95": [
+        0.8664,
+        0.9218
+      ]
+    },
+    "biopsiados": {
+      "n": 270,
+      "prevalencia": 0.8037,
+      "auroc": 0.7237,
+      "auprc": 0.8989,
+      "sensibilidad": 0.8802,
+      "especificidad": 0.3962,
+      "fnr": 0.1198,
+      "auroc_ci95": [
+        0.6398,
+        0.7963
+      ]
+    }
+  },
+  "equidad": {
+    "threshold": 0.23828422,
+    "global": {
+      "n": 456,
+      "prevalencia": 0.4758771929824561,
+      "threshold": 0.23828422,
+      "auroc": 0.8952914409116326,
+      "auprc": 0.8650513626036772,
+      "accuracy": 0.8179824561403509,
+      "sensibilidad": 0.880184331797235,
+      "especificidad": 0.7615062761506276,
+      "ppv": 0.7701612903225806,
+      "npv": 0.875,
+      "f1": 0.8215053763440859,
+      "fnr": 0.11981566820276501,
+      "fpr": 0.2384937238493724,
+      "brier": 0.1332956626194069,
+      "tp": 191,
+      "fp": 57,
+      "tn": 182,
+      "fn": 26
+    },
+    "brechas": {
+      "age_group": {
+        "fnr_max": 0.1778,
+        "fnr_min": 0.0,
+        "brecha_fnr": 0.1778,
+        "peor_subgrupo": "75+"
+      },
+      "fitzpatrick": {
+        "fnr_max": 0.2174,
+        "fnr_min": 0.1,
+        "brecha_fnr": 0.1174,
+        "peor_subgrupo": "1"
+      },
+      "fitzpatrick x sex": {
+        "fnr_max": 0.2,
+        "fnr_min": 0.0889,
+        "brecha_fnr": 0.1111,
+        "peor_subgrupo": "3 | M"
+      },
+      "sex": {
+        "fnr_max": 0.1278,
+        "fnr_min": 0.1071,
+        "brecha_fnr": 0.020699999999999996,
+        "peor_subgrupo": "M"
+      },
+      "view": {
+        "fnr_max": 0.2143,
+        "fnr_min": 0.0,
+        "brecha_fnr": 0.2143,
+        "peor_subgrupo": "FOREARM"
+      }
+    }
+  },
+  "gradcam": {
+    "n_imagenes": 200,
+    "baseline_uniforme": 0.51,
+    "umbral_operativo": 0.236,
+    "marco_evaluado": "15% exterior (~51% del área total)",
+    "detecciones_positivas": {
+      "n": 106,
+      "energia_bordes_media": 0.1404,
+      "veredicto": "atención centrada en el pulmón"
+    },
+    "resto_de_casos": {
+      "n": 29,
+      "energia_bordes_media": 0.4745,
+      "nota": "mapa sin señal; energía alta esperada, no indica atajo"
+    },
+    "mapas_nulos": 65,
+    "energia_bordes_media_global": 0.2121
+  },
+  "titular": "Brecha de FNR entre tonos de piel: 0.1174 (peor tono: 1)",
+  "minutos": 10.3
+}

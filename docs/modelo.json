@@ -1,0 +1,18 @@
+{
+  "arch": "densenet121",
+  "img_size": 224,
+  "umbral": 0.1357,
+  "prevalencia_entrenamiento": 0.5233,
+  "auroc_val": 0.9009,
+  "media": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "desv": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "diferencia_max_vs_pytorch": 4e-05
+}

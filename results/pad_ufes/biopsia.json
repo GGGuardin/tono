@@ -1,0 +1,28 @@
+{
+  "todos": {
+    "n": 456,
+    "prevalencia": 0.4759,
+    "auroc": 0.8953,
+    "auprc": 0.8651,
+    "sensibilidad": 0.8802,
+    "especificidad": 0.7615,
+    "fnr": 0.1198,
+    "auroc_ci95": [
+      0.8664,
+      0.9218
+    ]
+  },
+  "biopsiados": {
+    "n": 270,
+    "prevalencia": 0.8037,
+    "auroc": 0.7237,
+    "auprc": 0.8989,
+    "sensibilidad": 0.8802,
+    "especificidad": 0.3962,
+    "fnr": 0.1198,
+    "auroc_ci95": [
+      0.6398,
+      0.7963
+    ]
+  }
+}

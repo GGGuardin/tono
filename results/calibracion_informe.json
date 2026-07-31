@@ -1,0 +1,152 @@
+{
+  "n": 999,
+  "prop_no_evaluables": 0.5005,
+  "poder_predictivo": [
+    {
+      "medida": "nitidez_normalizada",
+      "auc": 0.5482,
+      "sentido": "bajo",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "tinte",
+      "auc": 0.5465,
+      "sentido": "alto",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "ratio_centro_marco",
+      "auc": 0.5413,
+      "sentido": "bajo",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "nitidez_global",
+      "auc": 0.5401,
+      "sentido": "bajo",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "estructura",
+      "auc": 0.5251,
+      "sentido": "bajo",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "rango_dinamico",
+      "auc": 0.5234,
+      "sentido": "bajo",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "brillo_medio",
+      "auc": 0.5215,
+      "sentido": "ambos",
+      "lectura": "casi nada"
+    },
+    {
+      "medida": "fraccion_reflejo_mayor",
+      "auc": 0.5143,
+      "sentido": "alto",
+      "lectura": "no aporta"
+    },
+    {
+      "medida": "fraccion_quemada",
+      "auc": 0.5075,
+      "sentido": "alto",
+      "lectura": "no aporta"
+    },
+    {
+      "medida": "lado_corto",
+      "auc": 0.501,
+      "sentido": "bajo",
+      "lectura": "no aporta"
+    },
+    {
+      "medida": "fraccion_apagada",
+      "auc": 0.4873,
+      "sentido": "alto",
+      "lectura": "no aporta"
+    }
+  ],
+  "umbrales_sugeridos": {},
+  "comparacion_umbrales": {},
+  "acuerdo_actual": {
+    "tasa_rechazo": 0.2422,
+    "sensibilidad": 0.274,
+    "especificidad": 0.7896,
+    "vp": 137,
+    "fp": 105,
+    "vn": 394,
+    "fn": 363
+  },
+  "equidad_portero": {
+    "tabla": [
+      {
+        "fitzpatrick_derm": "1",
+        "n": 68,
+        "no_evaluables_derm": 0.2059,
+        "tasa_rechazo_portero": 0.3088,
+        "rechazo_de_las_buenas": 0.2778,
+        "n_buenas": 54
+      },
+      {
+        "fitzpatrick_derm": "2",
+        "n": 256,
+        "no_evaluables_derm": 0.3516,
+        "tasa_rechazo_portero": 0.2969,
+        "rechazo_de_las_buenas": 0.2651,
+        "n_buenas": 166
+      },
+      {
+        "fitzpatrick_derm": "3",
+        "n": 251,
+        "no_evaluables_derm": 0.4741,
+        "tasa_rechazo_portero": 0.1514,
+        "rechazo_de_las_buenas": 0.1439,
+        "n_buenas": 132
+      },
+      {
+        "fitzpatrick_derm": "4",
+        "n": 150,
+        "no_evaluables_derm": 0.56,
+        "tasa_rechazo_portero": 0.2733,
+        "rechazo_de_las_buenas": 0.2576,
+        "n_buenas": 66
+      },
+      {
+        "fitzpatrick_derm": "5",
+        "n": 64,
+        "no_evaluables_derm": 0.375,
+        "tasa_rechazo_portero": 0.125,
+        "rechazo_de_las_buenas": 0.125,
+        "n_buenas": 40
+      },
+      {
+        "fitzpatrick_derm": "6",
+        "n": 21,
+        "no_evaluables_derm": 0.6667,
+        "tasa_rechazo_portero": 0.1905,
+        "rechazo_de_las_buenas": 0.0,
+        "n_buenas": 7
+      }
+    ],
+    "brecha_rechazo_de_buenas": 0.1528,
+    "tonos_evaluados": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ]
+  },
+  "veredicto_equidad": "AVISO: el portero descarta fotos buenas de forma desigual entre tonos.",
+  "no_evaluable_derm_por_tono": {
+    "1": 0.2059,
+    "2": 0.3516,
+    "3": 0.4741,
+    "4": 0.56,
+    "5": 0.375,
+    "6": 0.6667
+  }
+}

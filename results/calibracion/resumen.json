@@ -1,0 +1,183 @@
+{
+  "problema": "mismo AUROC en piel oscura pero FNR 0,237 frente a 0,103-0,152 al umbral unico",
+  "metodo": "umbrales derivados en validacion y aplicados a test; 3 semillas",
+  "semillas": [
+    42,
+    1337,
+    2024
+  ],
+  "auroc_test_medio": 0.9147,
+  "auroc_test_desv": 0.0017,
+  "estrategias": {
+    "umbral_unico": {
+      "brecha_fnr_media": 0.0792,
+      "brecha_fnr_desv": 0.0194,
+      "fnr_piel_oscura_media": 0.1754,
+      "brechas_por_semilla": [
+        0.0613,
+        0.0766,
+        0.0998
+      ]
+    },
+    "umbral_por_grupo": {
+      "brecha_fnr_media": 0.1385,
+      "brecha_fnr_desv": 0.0745,
+      "fnr_piel_oscura_media": 0.2193,
+      "brechas_por_semilla": [
+        0.0631,
+        0.1404,
+        0.212
+      ]
+    },
+    "sensibilidad_0.85_por_grupo": {
+      "brecha_fnr_media": 0.113,
+      "brecha_fnr_desv": 0.0788,
+      "fnr_piel_oscura_media": 0.2105,
+      "brechas_por_semilla": [
+        0.043,
+        0.0978,
+        0.1983
+      ]
+    }
+  },
+  "mejor_estrategia": "umbral_unico",
+  "detalle_semilla_42": {
+    "umbral_global_validacion": 0.1357,
+    "sensibilidad_objetivo": 0.85,
+    "estrategias": {
+      "umbral_unico": {
+        "brecha_fnr": 0.0613,
+        "fnr_maximo": 0.1161,
+        "peor_grupo": "1-2 clara",
+        "sensibilidad_global": 0.907,
+        "tabla": [
+          {
+            "grupo": "1-2 clara",
+            "n": 472,
+            "umbral": 0.1357,
+            "auroc": 0.9038,
+            "sensibilidad": 0.8839,
+            "especificidad": 0.7379,
+            "fnr": 0.1161
+          },
+          {
+            "grupo": "3-4 media",
+            "n": 317,
+            "umbral": 0.1357,
+            "auroc": 0.9417,
+            "sensibilidad": 0.9452,
+            "especificidad": 0.8129,
+            "fnr": 0.0548
+          },
+          {
+            "grupo": "5-6 oscura",
+            "n": 69,
+            "umbral": 0.1357,
+            "auroc": 0.8795,
+            "sensibilidad": 0.8947,
+            "especificidad": 0.7097,
+            "fnr": 0.1053
+          },
+          {
+            "grupo": "UNKNOWN",
+            "n": 41,
+            "umbral": 0.1357,
+            "auroc": 0.9067,
+            "sensibilidad": 0.9091,
+            "especificidad": 0.7368,
+            "fnr": 0.0909
+          }
+        ]
+      },
+      "umbral_por_grupo": {
+        "brecha_fnr": 0.0631,
+        "fnr_maximo": 0.1316,
+        "peor_grupo": "5-6 oscura",
+        "sensibilidad_global": 0.907,
+        "tabla": [
+          {
+            "grupo": "1-2 clara",
+            "n": 472,
+            "umbral": 0.1357,
+            "auroc": 0.9038,
+            "sensibilidad": 0.8839,
+            "especificidad": 0.7379,
+            "fnr": 0.1161
+          },
+          {
+            "grupo": "3-4 media",
+            "n": 317,
+            "umbral": 0.2034,
+            "auroc": 0.9417,
+            "sensibilidad": 0.9315,
+            "especificidad": 0.8304,
+            "fnr": 0.0685
+          },
+          {
+            "grupo": "5-6 oscura",
+            "n": 69,
+            "umbral": 0.1915,
+            "auroc": 0.8795,
+            "sensibilidad": 0.8684,
+            "especificidad": 0.7742,
+            "fnr": 0.1316
+          },
+          {
+            "grupo": "UNKNOWN",
+            "n": 41,
+            "umbral": 0.1357,
+            "auroc": 0.9067,
+            "sensibilidad": 0.9091,
+            "especificidad": 0.7368,
+            "fnr": 0.0909
+          }
+        ]
+      },
+      "sensibilidad_0.85_por_grupo": {
+        "brecha_fnr": 0.043,
+        "fnr_maximo": 0.1339,
+        "peor_grupo": "1-2 clara",
+        "sensibilidad_global": 0.907,
+        "tabla": [
+          {
+            "grupo": "1-2 clara",
+            "n": 472,
+            "umbral": 0.1849,
+            "auroc": 0.9038,
+            "sensibilidad": 0.8661,
+            "especificidad": 0.7581,
+            "fnr": 0.1339
+          },
+          {
+            "grupo": "3-4 media",
+            "n": 317,
+            "umbral": 0.3764,
+            "auroc": 0.9417,
+            "sensibilidad": 0.8904,
+            "especificidad": 0.8596,
+            "fnr": 0.1096
+          },
+          {
+            "grupo": "5-6 oscura",
+            "n": 69,
+            "umbral": 0.1915,
+            "auroc": 0.8795,
+            "sensibilidad": 0.8684,
+            "especificidad": 0.7742,
+            "fnr": 0.1316
+          },
+          {
+            "grupo": "UNKNOWN",
+            "n": 41,
+            "umbral": 0.1357,
+            "auroc": 0.9067,
+            "sensibilidad": 0.9091,
+            "especificidad": 0.7368,
+            "fnr": 0.0909
+          }
+        ]
+      }
+    }
+  },
+  "minutos": 13.7
+}

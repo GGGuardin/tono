@@ -1,0 +1,103 @@
+{
+  "objetivo": "predecir que un dermatologo NO podria evaluar la foto",
+  "referencia_reglas_auc": 0.547,
+  "veredicto_equidad": "CAUTELA: brecha grande entre tonos, aunque sin tendencia clara con la oscuridad.",
+  "fpr_por_tono": [
+    {
+      "subgrupo": "1",
+      "n": 75,
+      "fpr": 0.4853
+    },
+    {
+      "subgrupo": "2",
+      "n": 277,
+      "fpr": 0.5
+    },
+    {
+      "subgrupo": "3",
+      "n": 273,
+      "fpr": 0.5287
+    },
+    {
+      "subgrupo": "4",
+      "n": 149,
+      "fpr": 0.4946
+    },
+    {
+      "subgrupo": "5",
+      "n": 74,
+      "fpr": 0.3721
+    }
+  ],
+  "correlacion_tono_fpr": -0.607,
+  "brecha_fpr": 0.1566,
+  "test": {
+    "n": 1006,
+    "prevalencia": 0.37673956262425445,
+    "threshold": 0.35767972469329834,
+    "auroc": 0.5443183396245471,
+    "auprc": 0.4253868943655625,
+    "accuracy": 0.5288270377733598,
+    "sensibilidad": 0.5699208443271768,
+    "especificidad": 0.5039872408293461,
+    "ppv": 0.4098671726755218,
+    "npv": 0.6597077244258872,
+    "f1": 0.4768211920529801,
+    "fnr": 0.4300791556728232,
+    "fpr": 0.4960127591706539,
+    "brier": 0.3630419424145591,
+    "tp": 216,
+    "fp": 311,
+    "tn": 316,
+    "fn": 163,
+    "auroc_ci95": [
+      0.5086040421448745,
+      0.5797999847136894
+    ],
+    "auprc_ci95": [
+      0.3799482459171109,
+      0.47939470947203894
+    ],
+    "checkpoint": "/kaggle/working/runs/portero_scin/best.pth",
+    "manifest": "/kaggle/working/manifiesto_scin.csv",
+    "split": "test"
+  },
+  "equidad": {
+    "threshold": 0.3598139,
+    "global": {
+      "n": 1006,
+      "prevalencia": 0.37673956262425445,
+      "threshold": 0.3598139,
+      "auroc": 0.5443183396245471,
+      "auprc": 0.4253868943655625,
+      "accuracy": 0.5288270377733598,
+      "sensibilidad": 0.5699208443271768,
+      "especificidad": 0.5039872408293461,
+      "ppv": 0.4098671726755218,
+      "npv": 0.6597077244258872,
+      "f1": 0.4768211920529801,
+      "fnr": 0.4300791556728232,
+      "fpr": 0.4960127591706539,
+      "brier": 0.3630419421549019,
+      "tp": 216,
+      "fp": 311,
+      "tn": 316,
+      "fn": 163
+    },
+    "brechas": {
+      "fitzpatrick": {
+        "fnr_max": 0.5354,
+        "fnr_min": 0.2857,
+        "brecha_fnr": 0.24969999999999998,
+        "peor_subgrupo": "3"
+      },
+      "view": {
+        "fnr_max": 0.4638,
+        "fnr_min": 0.4198,
+        "brecha_fnr": 0.043999999999999984,
+        "peor_subgrupo": "AT_DISTANCE"
+      }
+    }
+  },
+  "minutos": 5.5
+}
