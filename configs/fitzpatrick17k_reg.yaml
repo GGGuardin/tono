@@ -1,0 +1,28 @@
+# Fitzpatrick17k con regularización fuerte
+#
+# La versión anterior llegó a un AUROC de entrenamiento de 0,99998 con la
+# validación en 0,90: memorización pura. El early stopping salvaba el checkpoint,
+# pero un modelo que memoriza da estimaciones por subgrupo más ruidosas, y aquí
+# el subgrupo pequeño (piel oscura, 69 imágenes en test) es justo el que importa.
+manifest: manifiesto_fitz.csv
+out_dir: runs/fitz_reg
+
+seed: 42
+arch: densenet121
+pretrained: true
+dropout: 0.5            # 0,3 -> 0,5
+freeze_backbone: false
+
+img_size: 224
+batch_size: 32
+num_workers: 2
+use_clahe: false
+allow_hflip: true
+
+epochs: 12              # 20 -> 12: la mejor época llegaba mucho antes
+lr: 1.0e-4
+weight_decay: 1.0e-3    # 1e-4 -> 1e-3
+early_stopping_patience: 3
+
+use_pos_weight: true
+balance_train: false
