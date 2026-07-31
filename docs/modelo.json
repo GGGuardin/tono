@@ -1,4 +1,5 @@
 {
+  "version": "c70f2ea87c29",
   "arch": "densenet121",
   "img_size": 320,
   "umbral": 0.1122,

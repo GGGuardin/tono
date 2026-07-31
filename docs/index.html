@@ -323,7 +323,9 @@ function pintarTabla(activa) {
 async function arrancar() {
   pintarTabla(-1);
   try {
-    meta = await (await fetch('modelo.json')).json();
+    // Sin cache para los metadatos (son 300 bytes) y con la huella del modelo
+    // en la URL: asi un modelo nuevo nunca se sirve desde la cache del navegador.
+    meta = await (await fetch('modelo.json', { cache: 'no-cache' })).json();
     TAM = meta.img_size || 224;
     for (const id of ['lienzo-entrada', 'lienzo-cam']) {
       $(id).width = TAM; $(id).height = TAM;
@@ -333,8 +335,10 @@ async function arrancar() {
     $('valor-prev').textContent = porDefecto + '%';
     $('recomendado').textContent =
       'Recomendado: dejalo en ' + porDefecto + '%, el valor con el que se entreno.';
-    sesion = await ort.InferenceSession.create('modelo.onnx', { executionProviders: ['wasm'] });
-    estado('Modelo listo. Nada de lo que subas sale de este dispositivo.');
+    const url = 'modelo.onnx' + (meta.version ? '?v=' + meta.version : '');
+    estado('Descargando el modelo (27 MB, solo la primera vez)…');
+    sesion = await ort.InferenceSession.create(url, { executionProviders: ['wasm'] });
+    estado('Modelo listo (' + (meta.version || 'sin version') + '). Nada de lo que subas sale de este dispositivo.');
   } catch (e) {
     estado('No se pudo cargar el modelo: ' + e.message);
   }

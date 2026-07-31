@@ -156,7 +156,16 @@ def main() -> None:
             "Reexporta con --sin-cuantizar."
         )
 
+    import hashlib
+
+    # Huella del fichero: la pagina la usa para pedir el modelo con una URL
+    # distinta cada vez que cambia. Sin esto, el navegador reutiliza el modelo
+    # antiguo de su cache aunque el servidor tenga otro, porque el nombre no
+    # cambia. Nos paso: la web servia una version obsoleta durante 10 minutos.
+    huella = hashlib.md5(salida.read_bytes()).hexdigest()[:12]
+
     meta = {
+        "version": huella,
         "arch": ckpt["config"].get("arch"),
         "img_size": ckpt["config"].get("img_size", 224),
         "umbral": round(float(ckpt.get("threshold", 0.5)), 4),
