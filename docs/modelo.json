@@ -3,7 +3,7 @@
   "img_size": 320,
   "umbral": 0.1122,
   "prevalencia_entrenamiento": 0.4947,
-  "auroc_val": 0.8969,
+  "auroc_val": 0.8991,
   "media": [
     0.485,
     0.456,
@@ -14,6 +14,6 @@
     0.224,
     0.225
   ],
-  "diferencia_max_vs_pytorch": 0.00212,
-  "umbral_nota": "derivado en validacion fijando sensibilidad 0,90 (cribado)"
+  "diferencia_max_vs_pytorch": 0.00307,
+  "umbral_nota": "derivado en validacion fijando sensibilidad global 0,90 (cribado)"
 }

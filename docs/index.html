@@ -128,7 +128,7 @@
     <strong style="margin-top:.6rem">Una puntuación baja no descarta nada.</strong>
     De las imágenes que este modelo puntuó en su rango más bajo, <strong>9 de cada 100
     eran malignas de todos modos</strong>. Y falla más justo en lo más grave:
-    <strong>se le escapa cerca de 1 de cada 11 melanomas</strong>. Si te preocupa una lesión, la
+    <strong>se le escapa cerca de 1 de cada 13 melanomas</strong>. Si te preocupa una lesión, la
     respuesta la tiene un dermatólogo.
   </div>
 
@@ -206,8 +206,8 @@
   </p>
   <table>
     <tr><th>Métrica</th><th class="num">Valor</th></tr>
-    <tr><td>AUROC en test</td><td class="num">0,905</td></tr>
-    <tr><td>Melanomas detectados</td><td class="num">90,6%</td></tr>
+    <tr><td>AUROC en test</td><td class="num">0,902 ± 0,004 (3 semillas)</td></tr>
+    <tr><td>Melanomas detectados</td><td class="num">92,3% ± 2,3 (3 semillas)</td></tr>
     <tr><td>Resolución de entrada</td><td class="num">320 px</td></tr>
     <tr><td>Peso del modelo</td><td class="num">7,5 MB</td></tr>
   </table>
@@ -230,14 +230,16 @@
   <details>
     <summary>Qué se le escapa (y por qué puede no detectar algo evidente)</summary>
     <p>
-      Sobre las 679 lesiones malignas de su conjunto de prueba, el modelo no detecta el
-      9,0%. Una versión anterior fallaba el doble en melanoma que en el resto; entrenar a
-      mayor resolución y con dos fuentes distintas cerró casi por completo esa diferencia:
+      Sobre las 679 lesiones malignas de su conjunto de prueba, el modelo no detecta
+      alrededor del 8%. Una versión anterior fallaba el doble en melanoma que en el resto;
+      entrenar a mayor resolución y con dos fuentes distintas cerró casi por completo esa
+      diferencia. Las cifras llevan margen porque se midieron con tres semillas: con 117
+      melanomas en el test, <strong>un solo caso vale 0,85 puntos porcentuales</strong>.
     </p>
     <table>
       <thead><tr><th>Grupo</th><th class="num">Casos malignos</th><th class="num">No detectados</th></tr></thead>
       <tbody>
-        <tr><td><strong>Melanoma</strong></td><td class="num">117</td><td class="num"><strong>9,4%</strong></td></tr>
+        <tr><td><strong>Melanoma</strong></td><td class="num">117</td><td class="num"><strong>7,7% ± 2,3</strong></td></tr>
         <tr><td>Resto de malignas</td><td class="num">562</td><td class="num">8,3%</td></tr>
         <tr><td>Imágenes de atlas</td><td class="num">454</td><td class="num">10,1%</td></tr>
         <tr><td>Fotos de móvil</td><td class="num">225</td><td class="num">6,7%</td></tr>

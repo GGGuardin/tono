@@ -1,0 +1,77 @@
+{
+  "objetivo": "poner barras de error y probar dos mejoras baratas",
+  "metrica": "sensibilidad en melanoma, umbral de validacion a sens. global 0,90",
+  "resultados": {
+    "s42": {
+      "umbral": 0.089,
+      "auroc": 0.9064,
+      "sens_global": 0.919,
+      "especificidad": 0.7003,
+      "sens_melanoma": 0.9316,
+      "n_melanoma": 117
+    },
+    "s1337": {
+      "umbral": 0.074,
+      "auroc": 0.9,
+      "sens_global": 0.9175,
+      "especificidad": 0.6915,
+      "sens_melanoma": 0.8974,
+      "n_melanoma": 117
+    },
+    "s2024": {
+      "umbral": 0.0738,
+      "auroc": 0.9001,
+      "sens_global": 0.9205,
+      "especificidad": 0.6974,
+      "sens_melanoma": 0.9402,
+      "n_melanoma": 117
+    },
+    "px384": {
+      "umbral": 0.2314,
+      "auroc": 0.9121,
+      "sens_global": 0.9131,
+      "especificidad": 0.7471,
+      "sens_melanoma": 0.9231,
+      "n_melanoma": 117
+    },
+    "s42tta": {
+      "umbral": 0.261,
+      "auroc": 0.9081,
+      "sens_global": 0.9043,
+      "especificidad": 0.731,
+      "sens_melanoma": 0.9316,
+      "n_melanoma": 117
+    },
+    "px384tta": {
+      "umbral": 0.3125,
+      "auroc": 0.9183,
+      "sens_global": 0.9116,
+      "especificidad": 0.7222,
+      "sens_melanoma": 0.8974,
+      "n_melanoma": 117
+    },
+    "conjunto_3": {
+      "umbral": 0.1879,
+      "auroc": 0.9121,
+      "sens_global": 0.9249,
+      "especificidad": 0.7266,
+      "sens_melanoma": 0.9231,
+      "n_melanoma": 117
+    }
+  },
+  "variabilidad_entre_semillas": {
+    "sens_melanoma_media": 0.9231,
+    "sens_melanoma_desv": 0.0226,
+    "sens_melanoma_valores": [
+      0.9316,
+      0.8974,
+      0.9402
+    ],
+    "auroc_media": 0.9022,
+    "auroc_desv": 0.0037
+  },
+  "mejor_absoluto": "s2024",
+  "mejor_desplegable": "s2024",
+  "nota_conjunto": "el conjunto de 3 no es desplegable: triplica peso y tiempo en el navegador",
+  "minutos": 77.6
+}

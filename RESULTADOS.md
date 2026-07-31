@@ -664,3 +664,88 @@ clara, porque sube todas las puntuaciones.
 
 Es el mismo patrón que apareció con la calibración por tono de piel: la corrección
 intuitiva, aplicada sin comprobar, empeoraba lo que pretendía arreglar.
+
+---
+
+# Consolidación: barras de error, y por qué no despliego el modelo con mejor AUROC
+
+Tres semillas a 320 px, una tirada a 384 px y promediado de volteos. Objetivo:
+poner margen a la afirmación principal y probar dos mejoras baratas.
+
+## El dato principal, ahora con su margen
+
+| | Valor |
+|---|---|
+| Melanomas detectados (3 semillas) | **92,3% ± 2,3** — valores 89,7 · 93,2 · 94,0 |
+| AUROC (3 semillas) | 0,9022 ± 0,0037 |
+
+La cifra que se reportó antes con una sola semilla, **90,6%**, era la peor de las
+tres. La media es más alta, pero eso no es la noticia: la noticia es que **el
+margen es de ±2,3 puntos**, y con 117 melanomas en el test **un solo caso vale
+0,85 puntos**. La diferencia entre la mejor y la peor semilla son cinco casos.
+
+Cualquier comparación de sensibilidad en melanoma por debajo de ~5 puntos entre
+configuraciones **no es interpretable** en este conjunto.
+
+## 384 px: mejor en dos métricas, y aun así no lo despliego
+
+| | 320 px (media de 3) | 384 px |
+|---|---|---|
+| AUROC | 0,9022 ± 0,0037 | **0,9121** — 2,7 desviaciones por encima |
+| Especificidad | 0,696 | **0,747** |
+| Sensibilidad en melanoma | 0,923 ± 0,023 | 0,923 — idéntica |
+
+La mejora en AUROC y especificidad parece real: 2,7 desviaciones sobre una métrica
+con poco ruido entre semillas. **Pero no lo despliego**, por tres razones:
+
+1. **Es una sola semilla.** Aplicar a 384 el mismo rasero que exigí a 320 obliga a
+   repetirlo antes de afirmar nada.
+2. **No mejora la métrica que decide.** La sensibilidad en melanoma es idéntica.
+3. **Regresa en un caso real.** Una de las dos fotos que motivaron toda esta
+   mejora deja de detectarse (0,104 frente a un umbral de 0,231), mientras que el
+   modelo de 320 la da con 0,534.
+
+Cambiar a un modelo que empeora un caso conocido, a cambio de una ventaja de una
+sola semilla en una métrica que no es la principal, no compensa. Queda anotado
+como la vía más prometedora para la siguiente iteración, con la condición de
+repetirlo con varias semillas.
+
+## Promediar volteos: gana poco y a veces cuesta
+
+| | AUROC | Especificidad | Sens. melanoma |
+|---|---|---|---|
+| 320 px | 0,9064 | 0,700 | 0,932 |
+| 320 px + volteos | 0,9081 | **0,731** | 0,932 |
+| 384 px | 0,9121 | 0,747 | 0,923 |
+| 384 px + volteos | **0,9183** | 0,722 | 0,897 |
+
+Sube el AUROC de forma consistente (+0,002 y +0,006), que es lo esperable de
+promediar transformaciones que preservan el contenido — al contrario que el
+multi-recorte, que lo hundía. Pero **el efecto es pequeño y no es gratis en el
+navegador**: cuadruplica el tiempo de inferencia. Y sobre 384 px cuesta 2,6 puntos
+de sensibilidad en melanoma.
+
+Para una página que corre en un móvil, cuadruplicar el cómputo por +0,002 de AUROC
+no sale a cuenta. Descartado para despliegue, conservado en el repositorio por si
+en otro contexto la relación cambia.
+
+## Y el conjunto de tres modelos tampoco gana
+
+AUROC 0,9121 y sensibilidad en melanoma 0,923: igual que una sola tirada a 384 px.
+El ensamblado, que suele ser la mejora gratuita por excelencia, aquí **no aporta
+nada** — y habría triplicado el peso descargado y el tiempo de inferencia.
+
+## Lo que se despliega
+
+**320 px, semilla 42.** No es el de mejor AUROC. Es el que está en la media de su
+familia en la métrica que importa, el que detecta los dos casos reales que
+motivaron la mejora, y el único cuyo comportamiento está medido con réplicas.
+
+Las dos fotos, con el umbral de cribado: **0,534 y 0,644**. Detectadas.
+
+## La lección
+
+Tres candidatos superaban al desplegado en AUROC, y **ninguno se despliega**.
+Elegir por el mejor número de test es exactamente el error contra el que este
+proyecto lleva advirtiendo desde el principio: con ±2,3 puntos de ruido, quedarse
+con el máximo es quedarse con la suerte.
