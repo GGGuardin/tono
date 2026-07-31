@@ -360,3 +360,114 @@ nunca llegó a funcionar.
    por ejemplo, si la foto permite localizar la lesión, o si dos fotos de la misma
    lesión producen la misma predicción. Ambos se pueden comprobar sin depender de
    que un experto declare «esto se puede evaluar».
+
+---
+
+# La pregunta central, por fin respondida: ¿funciona igual en piel oscura?
+
+Con el portal de Stanford caído y PAD-UFES sin representación (6 casos malignos en
+tonos 4-6), **Fitzpatrick17k** desbloqueó la medición: 1.079 imágenes en tonos
+oscuros, 509 de ellas malignas.
+
+El tono se agrupa en tres bandas —clara (1-2), media (3-4), oscura (5-6)— porque
+las dos anotaciones de Fitzpatrick del propio dataset **coinciden exactamente solo
+el 47,9% de las veces** (91% con margen de un tono). Seis clases exactas medirían
+sobre todo el ruido del anotador.
+
+## Experimento A — un modelo entrenado con piel clara, aplicado a todo
+
+DenseNet-121 entrenada en PAD-UFES (Brasil, fotos de móvil, piel mayoritariamente
+clara) y evaluada sobre Fitzpatrick17k completo.
+
+| Conjunto | n | AUROC |
+|---|---|---|
+| Test interno (PAD-UFES) | 456 | **0,899** (0,871–0,925) |
+| Fitzpatrick17k completo | 4.492 | **0,684** (0,669–0,700) |
+
+Caída de **0,215**. Pero lo interesante es cómo se reparte:
+
+| Banda de tono | n | Prevalencia | AUROC | FNR |
+|---|---|---|---|---|
+| 1-2 clara | 2.310 | 0,517 | 0,6924 | 0,278 |
+| 3-4 media | 1.597 | 0,474 | 0,6579 | **0,361** |
+| **5-6 oscura** | **408** | 0,507 | **0,6985** | 0,300 |
+
+**No hay degradación en piel oscura. Es la banda con el AUROC más alto de las
+tres**, y la peor tasa de infradiagnóstico está en la banda *media*, no en la
+oscura. La prevalencia es plana entre bandas, así que no lo explica un cambio de
+composición.
+
+La lectura: **el fallo de transferencia es uniforme, no racial.** Lo que hunde al
+modelo es el cambio de dominio —fotos de móvil frente a imágenes de atlas, y
+etiquetas de biopsia frente a diagnóstico clínico—, y ese golpe cae por igual sobre
+toda la piel.
+
+Es un resultado que contradice la hipótesis de partida del proyecto, y por eso vale
+la pena.
+
+## Experimento B — entrenar con representación
+
+Misma arquitectura y configuración, entrenando sobre Fitzpatrick17k.
+
+| Conjunto | n | AUROC |
+|---|---|---|
+| Test interno | 899 | **0,916** (0,896–0,935) |
+
+| Banda de tono | n | AUROC | Sensibilidad | **FNR** |
+|---|---|---|---|---|
+| 1-2 clara | 472 | 0,8997 | 0,848 | 0,152 |
+| 3-4 media | 317 | 0,9410 | 0,897 | 0,103 |
+| **5-6 oscura** | **69** | **0,9100** | **0,763** | **0,237** |
+
+Aquí aparece algo, pero **no es lo que suele denunciarse**. El AUROC en piel oscura
+(0,910) es equivalente al de piel clara (0,900): **la capacidad de discriminar es
+la misma**. Lo que cambia es el punto de operación — la sensibilidad cae a 0,763 y
+la tasa de infradiagnóstico sube a 0,237, entre 1,6 y 2,3 veces la de las otras
+bandas.
+
+**Es un problema de calibración, no de discriminación.** Exactamente el mismo
+patrón que encontramos en el proyecto de tórax con el conjunto pediátrico: AUROC
+0,922 y aun así perdiendo el 64% de los casos, porque el umbral venía de otra
+población. Aquí el umbral es único para las tres bandas y encaja peor en la oscura,
+que además tiene mayor prevalencia (0,551 frente a 0,46-0,47).
+
+Y eso importa porque **la solución ya está construida**: la corrección de a priori
+de `src/calibration.py`, aplicada por subgrupo, o simplemente un umbral por banda.
+No hace falta reentrenar nada.
+
+**Salvedad que impide cerrarlo**: la banda oscura del test tiene 69 imágenes, unas
+38 positivas, o sea unos 9 falsos negativos. Mover dos casos cambia la cifra de
+forma apreciable. Es una señal que hay que confirmar, no un veredicto.
+
+## Qué se puede afirmar y qué no
+
+**Se puede afirmar:** en ninguno de los dos modelos la **capacidad de discriminar**
+empeora en piel oscura. En A la banda oscura es incluso la mejor; en B, equivalente
+a la clara.
+
+**No se puede afirmar** que el sistema sea equitativo: en B el punto de operación
+infradiagnostica más en piel oscura, y aunque la muestra es pequeña, la dirección
+coincide con lo documentado en la literatura.
+
+**No se puede comparar A con B directamente** para atribuir la mejora a la
+representación: A se evaluó fuera de su dominio y B dentro del suyo. El salto de
+0,699 a 0,910 en piel oscura mezcla ambos efectos.
+
+## Salvedades del dataset
+
+- Fitzpatrick17k son **atlas dermatológicos**: diagnóstico clínico o de libro, **no
+  confirmado por biopsia**. Verdad de referencia más débil que DDI.
+- Son imágenes de atlas, **no fotos de móvil**: el dominio no coincide con el caso
+  de uso real.
+- Sin identificador de paciente: el split por paciente equivale al split por imagen.
+- Ambos modelos **sobreajustan con fuerza** — el de Fitzpatrick17k llega a un AUROC
+  de entrenamiento de 0,99998 con la validación en 0,90. El *early stopping* salva
+  el checkpoint, pero hay margen claro de mejora con regularización.
+
+## Lo siguiente
+
+1. **Aplicar la corrección de umbral por banda** y volver a medir el FNR. Es una
+   línea de código y ataca directamente lo único que salió mal.
+2. **Confirmar con DDI** cuando el portal de Stanford vuelva: biopsia como verdad y
+   tonos diversos por diseño.
+3. **Contener el sobreajuste** antes de sacar conclusiones más finas.
